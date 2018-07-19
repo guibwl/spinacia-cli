@@ -1,0 +1,72 @@
+{
+  "env": {
+    "development": {
+      "presets": [
+        [
+          "env", 
+          {
+            "targets": {
+              "uglify": true
+            },
+            "modules": false,
+            "loose": true,
+            "useBuiltIns": true,
+            "debug": true
+          }
+        ],
+        "stage-1",
+        "react"
+      ],
+      "plugins": [
+        [
+          "transform-runtime", 
+          {
+            "polyfill": false
+          }
+        ]
+      ]
+    },
+    "test": {
+      "presets": [
+        [
+          "env", 
+          {
+            "targets": {
+              "uglify": true
+            },
+            "modules": false,
+            "loose": true,
+            "useBuiltIns": true,
+            "debug": true
+          }
+        ],
+        "stage-1", "react"
+      ]
+    },
+    "production": {
+      "presets": [
+        [
+          "env", {
+            "targets": {
+              "uglify": true
+            },
+            "modules": false,
+            "loose": true,
+            "useBuiltIns": true,
+            "debug": false
+          }
+        ],
+        "stage-1",
+        "react"
+      ],
+      "plugins": [
+        [
+          "transform-runtime", 
+          {
+           "polyfill": false
+          }
+        ]
+      ]
+    }
+  }
+}

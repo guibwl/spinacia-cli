@@ -1,0 +1,13 @@
+.DS_Store
+node_modules
+dist
+zip
+npm-debug.log
+output
+test.js
+Thumbs.db
+.idea
+/next.js
+.vscode
+Makefile
+yarn.lock
