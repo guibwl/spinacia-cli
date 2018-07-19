@@ -1,8 +1,8 @@
 {
-  "name": "webpackdome",
+  "name": "spinacia-cli",
   "version": "1.0.0",
-  "description": "webpackdome by jamesLiu",
-  "main": "startServer.js",
+  "description": "a pure react cli for my self",
+  "main": "app/index.jsx",
   "scripts": {
     "start": "cd build && node server.js",
     "test": "npm run test",
@@ -12,7 +12,9 @@
   "keywords": [
     "webpack",
     "demo",
-    "jamesLiu"
+    "jamesLiu",
+    "spinacia",
+    "cli"
   ],
   "repository": {
     "type": "git",
