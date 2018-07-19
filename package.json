@@ -14,6 +14,10 @@
     "demo",
     "jamesLiu"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/guibwl/spinacia-cli"
+  },
   "author": "jamesLiu",
   "license": "ISC",
   "devDependencies": {
