@@ -11,12 +11,34 @@ module.exports = {
   },
   output: {
     path: path.resolve(basePath, './dist'),
-    chunkFilename: '[chunkhash:12].js',
-    filename: 'static/js/app.[chunkhash:12].js'
+    chunkFilename: 'static/js/[name].[chunkhash:12].js',
+    filename: '[name].[chunkhash:12].js'
+  },
+  optimization: {
+    splitChunks: {
+        chunks: "all",
+        cacheGroups: {
+            vendor: {
+                name: "vendors",
+                chunks: "all",
+                test: /[\\/]node_modules[\\/]/,
+                priority: 10,
+                enforce: true
+            },
+            commons: {
+                name: 'commons',
+                chunks: "all",
+                test: /app\//,
+                priority: 10,
+                enforce: true
+            }
+        }
+    },
+    runtimeChunk: { name: 'manifest' }
   },
   plugins: [
     new ExtractTextPlugin({
-      filename: 'static/css/style.[chunkhash:12].css'
+      filename: 'static/css/[name].[chunkhash:12].css'
     }),
     new HtmlWebpackPlugin({
       template: './index.html',
@@ -55,11 +77,11 @@ module.exports = {
       },
       {
         test: /\.(ttf|eot|svg|woff|woff2)(\?.+)?$/,
-        loader: 'file-loader?name=[hash:12].[ext]'
+        loader: 'file-loader?name=static/media/[name].[hash:12].[ext]'
       },
       {
         test: /\.(jpe?g|png|gif)(\?.+)?$/,
-        loader: 'url-loader?name=[hash:12].[ext]&limit=25000'
+        loader: 'url-loader?name=static/media/[name].[hash:12].[ext]&limit=25000'
       },
       {
         test: /\.md$/,
