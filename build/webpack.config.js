@@ -21,7 +21,14 @@ module.exports = {
             vendor: {
                 name: "vendors",
                 chunks: "all",
-                test: /[\\/]node_modules[\\/]/,
+                test: /react|redux|core-js/,
+                priority: 10,
+                enforce: true
+            },
+            dependencies: {
+                name: "dependencies",
+                chunks: "all",
+                test: /^((?!react|redux|core-js).)*node_modules((?!react|redux|core-js).)*$/,
                 priority: 10,
                 enforce: true
             },
