@@ -72,14 +72,16 @@ module.exports = {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: [ 'css-loader', "postcss-loader"]
+          use: [ 'css-loader', "postcss-loader"],
+          publicPath: '../../'
         })
       },
       {
         test: /\.less$/,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: ['css-loader',  'less-loader', "postcss-loader"]
+          use: ['css-loader',  'less-loader', "postcss-loader"],
+          publicPath: '../../'
         })
       },
       {
