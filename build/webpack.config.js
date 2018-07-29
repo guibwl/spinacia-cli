@@ -16,25 +16,25 @@ module.exports = {
   },
   optimization: {
     splitChunks: {
-        chunks: "all",
+        chunks: 'all',
         cacheGroups: {
             vendor: {
-                name: "vendors",
-                chunks: "all",
+                name: 'vendors',
+                chunks: 'all',
                 test: /react|redux|core-js/,
                 priority: 10,
                 enforce: true
             },
             dependencies: {
-                name: "dependencies",
-                chunks: "all",
+                name: 'dependencies',
+                chunks: 'all',
                 test: /^((?!react|redux|core-js).)*node_modules((?!react|redux|core-js).)*$/,
                 priority: 10,
                 enforce: true
             },
             commons: {
                 name: 'commons',
-                chunks: "all",
+                chunks: 'all',
                 test: /app\//,
                 priority: 10,
                 enforce: true
@@ -72,7 +72,7 @@ module.exports = {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: [ 'css-loader', "postcss-loader"],
+          use: [ 'css-loader', 'postcss-loader'],
           publicPath: '../../'
         })
       },
@@ -80,7 +80,7 @@ module.exports = {
         test: /\.less$/,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: ['css-loader',  'less-loader', "postcss-loader"],
+          use: ['css-loader', 'postcss-loader', 'less-loader'],
           publicPath: '../../'
         })
       },

@@ -1,4 +1,4 @@
-/* eslint import/no-extraneous-dependencies: ["off"] */
+/* eslint import/no-extraneous-dependencies: ['off'] */
 
 const path = require('path');
 const webpack = require('webpack');
@@ -39,11 +39,11 @@ new WebpackDevServer(webpack({
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader', "postcss-loader"]
+        use: ['style-loader', 'css-loader', 'postcss-loader']
       },
       {
         test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'less-loader', "postcss-loader"]
+        use: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader']
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2)(\?.+)?$/,
