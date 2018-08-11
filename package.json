@@ -1,6 +1,6 @@
 {
   "name": "spinacia-cli",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "a pure react cli for my self",
   "main": "app/index.jsx",
   "scripts": {
@@ -12,9 +12,9 @@
   "keywords": [
     "webpack",
     "demo",
-    "jamesLiu",
     "spinacia",
-    "cli"
+    "cli",
+    "spinacia-cli"
   ],
   "repository": {
     "type": "git",

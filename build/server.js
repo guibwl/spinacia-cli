@@ -4,12 +4,13 @@ const path = require('path');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const PORT = 3000;
 
 new WebpackDevServer(webpack({
   mode: 'development',
   devtool: 'eval',
   entry: [
-    'webpack-dev-server/client?http://localhost:3000',
+    `webpack-dev-server/client?http://localhost:${PORT}`,
     'webpack/hot/only-dev-server',
     './index.js'
   ],
@@ -64,7 +65,8 @@ new WebpackDevServer(webpack({
   hot: true,
   historyApiFallback: true,
   stats: { colors: true }
-}).listen(3000, error => {
+}).listen(PORT, '0.0.0.0', error => {
+  console.log(`Starting server on http://localhost:${PORT}`);
   if (error) {
     throw error;
   }
