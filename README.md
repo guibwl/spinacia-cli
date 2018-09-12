@@ -1,12 +1,13 @@
 # spinacia-cli
-a pure react cli for you
+react cli
 
-## usage
+## Install
 
+``` bash
+npx spinacia-cli
+```
+or
 
-``$ npm i ``
-
-
-``$ npm start ``
-
-open [http://localhost:3000](http://localhost:3000)
+``` bash
+npx spinacia-cli <folder name>
+```

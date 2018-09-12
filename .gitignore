@@ -11,3 +11,4 @@ Thumbs.db
 .vscode
 Makefile
 yarn.lock
+/spinacia-react-app
