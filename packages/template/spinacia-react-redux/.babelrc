@@ -1,0 +1,109 @@
+{
+  "env": {
+    "development": {
+      "presets": [
+        [
+          "env",
+          {
+            "targets": {
+              "uglify": true,
+              "browsers": [
+                "last 2 versions",
+                "Firefox ESR",
+                "> 1%",
+                "ie >= 8",
+                "iOS >= 8",
+                "Android >= 4"
+              ]
+            },
+            "modules": false,
+            "loose": true,
+            "useBuiltIns": true,
+            "debug": true
+          }
+        ],
+        "stage-1",
+        "react"
+      ],
+      "plugins": [
+        [
+          "import", {
+            "libraryName": "antd-mobile",
+            "style": "css"
+          }
+        ],
+        [
+          "transform-runtime",
+          {
+            "polyfill": false
+          }
+        ]
+      ]
+    },
+    "test": {
+      "presets": [
+        [
+          "env",
+          {
+            "targets": {
+              "uglify": true,
+              "browsers": [
+                "last 2 versions",
+                "Firefox ESR",
+                "> 1%",
+                "ie >= 8",
+                "iOS >= 8",
+                "Android >= 4"
+              ]
+            },
+            "modules": false,
+            "loose": true,
+            "useBuiltIns": true,
+            "debug": false
+          }
+        ],
+        "stage-1",
+        "react"
+      ]
+    },
+    "production": {
+      "presets": [
+        [
+          "env", {
+            "targets": {
+              "uglify": true,
+              "browsers": [
+                "last 2 versions",
+                "Firefox ESR",
+                "> 1%",
+                "ie >= 8",
+                "iOS >= 8",
+                "Android >= 4"
+              ]
+            },
+            "modules": false,
+            "loose": true,
+            "useBuiltIns": true,
+            "debug": false
+          }
+        ],
+        "stage-1",
+        "react"
+      ],
+      "plugins": [
+        [
+          "import", {
+            "libraryName": "antd-mobile",
+            "style": "css"
+          }
+        ],
+        [
+          "transform-runtime",
+          {
+            "polyfill": false
+          }
+        ]
+      ]
+    }
+  }
+}

@@ -1,23 +1,46 @@
 #!/usr/bin/env node
 
-var args = process.argv.slice(2);
+var fs=require("fs-extra");
 var path = require('path');
-var spawn = require('child_process').spawn;
+var chalk = require('chalk')
+var ora = require('ora');
+
 var proPath = process.cwd(); //project path
-var install_path = path.resolve(proPath+'/' + (args[0] || 'spinacia-react-app'));
-var delFiles = require('../utils/deleteFiles');
+var _cwd = path.resolve(__dirname, '../');
+var originDir = path.join(_cwd, '/packages/template/spinacia-react-redux');
+var args = process.argv.slice(2);
+var install_path = path.join(proPath+'/' + (args[0] || 'spinacia-react-redux'));
+var spinner = ora().start();
 
+spinner.color = 'yellow';
+spinner.text = 'spinacia-react-redux' + chalk.bold.blue(' installing');
 
-var instalInstance = spawn('git clone', ['https://github.com/guibwl/spinacia-react-redux.git', '--template=', install_path], {
-    stdio: 'inherit',
-    env: process.env,
-    shell: true
-})
+// Rename gitignore after the fact to prevent npm from renaming it to .npmignore
+  // See: https://github.com/npm/npm/issues/1862
+try {
+  fs.moveSync(
+    path.join(originDir, 'gitignore'),
+    path.join(originDir, '.gitignore'),
+    []
+  );
+} catch (err) {
+  // Append if there's already a `.gitignore` file there
+  if (err.code === 'EEXIST') {
+    const data = fs.readFileSync(path.join(originDir, 'gitignore'));
+    fs.appendFileSync(path.join(originDir, '.gitignore'), data);
+    fs.unlinkSync(path.join(originDir, 'gitignore'));
+  } else {
+    throw err;
+  }
+}
 
-instalInstance.on('close', () => {
-    delFiles(install_path + '/.git')
-})
+// Async with promises:
+fs.copy(originDir, install_path)
+  .then(() => {
+    setTimeout(() => {
 
-instalInstance.on('error', function (err) {
-    console.error(err.stack || err)
-})
+        spinner.info('');
+        spinner.succeed(['spinacia-react-redux' + chalk.bold.green(' has installed')])
+    }, 1500);
+  })
+  .catch(err => console.error(err))
