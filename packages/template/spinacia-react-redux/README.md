@@ -1,8 +1,10 @@
 # Spinacia-react-redux
 
 基于旧版本的React脚手架的升级版本，升级后的脚手架无论本地服务启动速度，打包后的文件大小、浏览器加载速度等都得到一定提升，同时你还可以使用 react 16 和 webpack 4 的新特性来进行开发；
- ``react 16.x``  ``webpack 4.x``  ``react router 4.x``  ``redux 4.x``
+ 
 **目录结构及开发方式尽量与旧版保持一致，多数文件直接进行copy即可**；
+
+``react 16.x``  ``webpack 4.x``  ``react router 4.x``  ``redux 4.x``
 
 
 
