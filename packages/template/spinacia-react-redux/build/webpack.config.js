@@ -18,30 +18,30 @@ module.exports = {
   },
   optimization: {
     splitChunks: {
-        chunks: 'all',
-        cacheGroups: {
-            vendor: {
-                name: 'vendors',
-                chunks: 'all',
-                test: /react|redux|core-js/,
-                priority: 10,
-                enforce: true
-            },
-            dependencies: {
-                name: 'dependencies',
-                chunks: 'all',
-                test: /^((?!react|redux|core-js).)*node_modules((?!react|redux|core-js).)*$/,
-                priority: 10,
-                enforce: true
-            },
-            commons: {
-                name: 'commons',
-                chunks: 'all',
-                test: /app\/index.jsx|app\/components|app\/config|app\/css|app\/utils/,
-                priority: 10,
-                enforce: true
-            }
+      chunks: 'all',
+      cacheGroups: {
+        vendor: {
+          name: 'vendors',
+          chunks: 'all',
+          test: /react|redux|core-js/,
+          priority: 10,
+          enforce: true
+        },
+        dependencies: {
+          name: 'dependencies',
+          chunks: 'all',
+          test: /^((?!react|redux|core-js).)*node_modules((?!react|redux|core-js).)*$/,
+          priority: 10,
+          enforce: true
+        },
+        commons: {
+          name: 'commons',
+          chunks: 'all',
+          test: /app\/index.jsx|app\/components|app\/config|app\/css|app\/utils/,
+          priority: 10,
+          enforce: true
         }
+      }
     },
     runtimeChunk: { name: 'manifest' }
   },

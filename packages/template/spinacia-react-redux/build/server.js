@@ -4,6 +4,7 @@ const path = require('path');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 const PORT = 3000;
 
 new WebpackDevServer(webpack({
