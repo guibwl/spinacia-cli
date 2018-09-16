@@ -1,8 +1,8 @@
-#Spinacia-react-redux
+# Spinacia-react-redux
 
-基于旧版本的React脚手架的升级版本，升级后的脚手架无论本地服务启动速度，打包后的文件大小、浏览器加载速度等都得到一定提升，同时你还可以使用 react 16 和 webpack 4 的新特性来进行开发；
+基于旧版本的React脚手架的升级版本，升级后的脚手架无论本地服务启动速度，打包后的文件大小、浏览器加载速度等都得到一定提升，同时你还可以使用 react 16 和 webpack 4 的新特性来进行开发；
  ``react 16.x``  ``webpack 4.x``  ``react router 4.x``  ``redux 4.x``
-**目录结构及开发方式尽量与旧版保持一致，多数文件直接进行copy即可**；
+**目录结构及开发方式尽量与旧版保持一致，多数文件直接进行copy即可**；
 
 
 
@@ -46,7 +46,7 @@ spinacia-react-redux            #npx 命令生成的文件夹
     ├── config                  #配置项
     │   ├── router-core         #router4.x 核心配置文件(开发时不用修改该文件夹)
     │   ├── env.js              #环境配置
-    │   ├── reducer.js          #root reducer
+    │   ├── reducer.js          #root reducer
     │   └── route.js            #router4.x 路由配置
     ├── containers              #页面容器
     │   ├── App                 #首页面
@@ -92,7 +92,7 @@ or
 
 项目将被打包到 ``dist`` 文件夹中；
 所有打包文件名将带有 hashes ，无需担心首次发布后会有缓存问题；
-脚手架采用 ``optimization.splitChunks`` 分离打包，优化加载性能！
+脚手架采用 ``optimization.splitChunks`` 分离打包，优化加载性能！
 
 ## Features
 
@@ -107,7 +107,7 @@ or
 
 我们通过 webpack ```html-webpack-plugin``` 插件配置加载 loading。在第2步首屏体积(通常1-4kb)加载完成时渲染 loading ，在第三步js(通常100-1000kb)加载完成后将loding销毁进行首次内容渲染。以此达到减少白屏时间提升用户体验的目的。
 
-[更多性能优化方案](https://juejin.im/entry/5b03afd351882542ac7d9291)
+[更多性能优化方案](https://juejin.im/entry/5b03afd351882542ac7d9291)
 
 #### 分离打包，充分利用浏览器缓存
 
@@ -145,7 +145,7 @@ or
 
 #### Eslnt in vscode
 
-该脚手架使用了Eslnt来规范代码，若使用 vscode 来开发项目, 在安装了```eslint``` 插件后可以在编辑器设置中设置 ``` eslint.autoFixOnSave  ``` 为 ``true``, 这样在你保存代码时候，浏览器会帮你修复一些 ```eslint``` 检测出的错误；
+该脚手架使用了Eslnt来规范代码，若使用 vscode 来开发项目, 在安装了```eslint``` 插件后可以在编辑器设置中设置 ``` eslint.autoFixOnSave  ``` 为 ``true``, 这样在你保存代码时候，浏览器会帮你修复一些 ```eslint``` 检测出的错误；
 
 ###### 更多特性待补充。。。
 
