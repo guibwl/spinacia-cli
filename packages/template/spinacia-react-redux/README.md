@@ -107,7 +107,7 @@ or
 * 然后 react、react-dom、业务js代码加载完毕，应用第一次渲染，或者说首次内容渲染；
 
 
-我们通过 webpack ```html-webpack-plugin``` 插件配置加载 loading。在第2步首屏体积(通常1-4kb)加载完成时渲染 loading ，在第三步js(通常100-1000kb)加载完成后将loding销毁进行首次内容渲染。以此达到减少白屏时间提升用户体验的目的。
+旧版本中我们需要在第3步完成后渲染页面，在此之前页面都是空白的；我们其实可以在第2步加载完成时，做些什么；通过 webpack ```html-webpack-plugin``` 插件配置加载 loading。可以在第2步首屏体积(通常1-4kb)加载完成时渲染 loading ，在第3步js(通常100-1000kb)加载完成后将loding销毁进行首次内容渲染。以此达到减少白屏时间提升用户体验的目的。
 
 [更多性能优化方案](https://juejin.im/entry/5b03afd351882542ac7d9291)
 
