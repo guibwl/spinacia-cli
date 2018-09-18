@@ -5,9 +5,8 @@
   "main": "app/index.jsx",
   "scripts": {
     "start": "cd build && node server.js",
-    "test": "npm run test",
-    "mytest": "babel app/index.js --out-dir mytest/",
-    "build": "rm -rf dist/ && cd build && webpack --progress --mode production"
+    "test": "cross-env BABEL_ENV=test eslint app --fix",
+    "build": "rm -rf dist/ && cd build && cross-env BABEL_ENV=production webpack --progress --mode production"
   },
   "keywords": [
     "webpack",
@@ -34,6 +33,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
     "babel-runtime": "^6.26.0",
+    "cross-env": "^5.2.0",
     "core-js": "^2.5.7",
     "css-loader": "^1.0.0",
     "eslint": "^4.19.1",
