@@ -1,6 +1,6 @@
 {
   "name": "spinacia-cli",
-  "version": "1.0.15",
+  "version": "1.0.18",
   "description": "a react cli",
   "bin": {
     "spinacia-cli": "./bin/spinacia-cli.js"
@@ -12,7 +12,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "rm -rf ./spinacia-react-redux && spinacia-cli",
+    "start": "rm -rf ./spinacia-react-pure && spinacia-cli",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
