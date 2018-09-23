@@ -18,27 +18,35 @@ module.exports = {
     splitChunks: {
         chunks: 'all',
         cacheGroups: {
-            vendor: {
-                name: 'vendors',
-                chunks: 'all',
-                test: /react|redux|core-js/,
-                priority: 10,
-                enforce: true
+          vendor: {
+              name: 'vendors',
+              chunks: 'all',
+              test: /[\\/]node_modules[\\/].+(react|redux)/,
+              priority: 3,
+              enforce: true
+          },
+          dependencies: {
+              name: 'dependencies',
+              chunks: 'all',
+              test: /[\\/]node_modules[\\/]/,
+              priority: 2,
+              enforce: true
+          },
+          commons: {
+            name: 'commons',
+            chunks: 'all',
+            test: module => {
+              const filePath = module.nameForCondition && module.nameForCondition();
+              const rgx = new RegExp(`${basePath}/app`);
+
+              if (rgx.test(filePath)) {
+                return true;
+              }
+              return false;
             },
-            dependencies: {
-                name: 'dependencies',
-                chunks: 'all',
-                test: /^((?!react|redux|core-js).)*node_modules((?!react|redux|core-js).)*$/,
-                priority: 10,
-                enforce: true
-            },
-            commons: {
-                name: 'commons',
-                chunks: 'all',
-                test: /app\//,
-                priority: 10,
-                enforce: true
-            }
+            priority: 1,
+            enforce: true
+          }
         }
     },
     runtimeChunk: { name: 'manifest' }

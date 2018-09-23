@@ -23,22 +23,30 @@ module.exports = {
         vendor: {
           name: 'vendors',
           chunks: 'all',
-          test: /react|redux|core-js/,
-          priority: 10,
+          test: /[\\/]node_modules[\\/].+(react|redux)/,
+          priority: 3,
           enforce: true
         },
         dependencies: {
           name: 'dependencies',
           chunks: 'all',
-          test: /^((?!react|redux|core-js).)*node_modules((?!react|redux|core-js).)*$/,
-          priority: 10,
+          test: /[\\/]node_modules[\\/]/,
+          priority: 2,
           enforce: true
         },
         commons: {
           name: 'commons',
           chunks: 'all',
-          test: /app\/index.jsx|app\/components|app\/config|app\/css|app\/utils/,
-          priority: 10,
+          test: module => {
+            const filePath = module.nameForCondition && module.nameForCondition();
+            const rgx = new RegExp(`${basePath}/app/(index.jsx|components|config|css|utils)`);
+
+            if (rgx.test(filePath)) {
+              return true;
+            }
+            return false;
+          },
+          priority: 1,
           enforce: true
         }
       }
