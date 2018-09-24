@@ -1,8 +1,7 @@
 {
-  "name": "spinacia-cli",
+  "name": "spinacia-react-pure",
   "version": "0.0.1",
-  "description": "a pure react cli for my self",
-  "main": "app/index.jsx",
+  "description": "react with webpack",
   "scripts": {
     "start": "cd build && node server.js",
     "test": "cross-env BABEL_ENV=test eslint app --fix",

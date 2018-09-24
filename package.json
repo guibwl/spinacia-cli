@@ -1,6 +1,6 @@
 {
   "name": "spinacia-cli",
-  "version": "1.0.18",
+  "version": "1.0.20",
   "description": "a react cli",
   "bin": {
     "spinacia-cli": "./bin/spinacia-cli.js"
@@ -20,7 +20,11 @@
     "demo",
     "spinacia",
     "cli",
-    "spinacia-cli"
+    "spinacia-cli",
+    "react",
+    "app",
+    "react-app",
+    "redux app"
   ],
   "repository": {
     "type": "git",

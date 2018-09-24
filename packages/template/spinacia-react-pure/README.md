@@ -1,5 +1,5 @@
-# spinacia-cli
-a pure react cli for you
+# spinacia-react-pure
+a pure react with webpack
 
 ## usage
 
