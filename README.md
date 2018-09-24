@@ -1,5 +1,5 @@
 # spinacia-cli
-react cli
+react app group
 
 
 *[npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) comes with npm 5.2+ and higher, run ```npm i -g npm``` to update
@@ -18,6 +18,7 @@ npx spinacia-cli <folder name>
 ```
 
 ## Install only react 
+[react 16.x | webpack 4.x]
 
 ``` bash
 npx spinacia-cli --pure

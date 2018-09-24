@@ -13,7 +13,7 @@ export default class MyComponent extends React.Component {
       <div className="App">
         <img src={SPINACIA} alt=""/>
         <h2>SPINACIA-CLI</h2>
-        <span>pure react cli for you</span>
+        <span>react app</span>
       </div>
     );
   }
