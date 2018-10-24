@@ -1,0 +1,53 @@
+.ost-mask {
+  position: fixed;
+  left: 0;
+  top: -200px;
+  z-index: 999;
+  width: 100%;
+  height: 1000%;
+  background: rgba(0, 0, 0, 0.4);
+  // visibility: hidden;
+
+  &-default-popup {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+  }
+
+  &-show {
+    .effect(@keyframes) {
+      animation-duration: 0.2s; // animation-timing-function: cubic-bezier(.55, 0, .55, .2);
+      animation: @keyframes .3s 1 linear;
+      animation-name: @keyframes;
+      animation-fill-mode: both;
+    }
+    &-fade-in {
+      .effect(@keyframes: amFadeIn);
+      animation-play-state: running;
+    }
+    &-fade-out {
+      .effect(@keyframes: amFadeOut);
+      animation-play-state: running;
+    } // paused
+    @keyframes amFadeIn {
+      0% {
+        opacity: 0;
+        visibility: hidden;
+      }
+      100% {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+    @keyframes amFadeOut {
+      0% {
+        opacity: 1;
+        visibility: visible;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+  }
+}
