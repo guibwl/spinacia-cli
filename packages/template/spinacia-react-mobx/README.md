@@ -48,21 +48,16 @@ spinacia-react-redux            #npx 命令生成的文件夹
     ├── config                  #配置项
     │   ├── router-core         #router4.x 核心配置文件(开发时不用修改该文件夹)
     │   ├── env.js              #环境配置
-    │   ├── reducer.js          #root reducer
+    │   ├── store.js            #root store
     │   └── route.js            #router4.x 路由配置
     ├── containers              #页面容器
     │   ├── App                 #首页面
-    │   │   ├── action.js
-    │   │   ├── constant.js
     │   │   ├── index.js
-    │   │   ├── reducer.js
+    │   │   ├── store.js
     │   │   └── style.less      #私有样式
     │   └── Main                #案例页面
-    │         ├── action
     │         ├── components    #公用组件
-    │         ├── connect
-    │         ├── constants
-    │         ├── reducers
+    │         ├── store
     │         ├── index.js
     │         ├── SPINACIA.svg
     │         └── style.less    #私有样式
@@ -76,7 +71,7 @@ spinacia-react-redux            #npx 命令生成的文件夹
 
 现在打开你的项目目录:
 
-``` cd spinacia-react-redux ```
+``` cd spinacia-react-mobx ```
 
 or
 
