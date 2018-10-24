@@ -1,16 +1,16 @@
 # spinacia-react-redux
 
-react 16+, webpack 4.0+, react router 4.0+, redux 4.0+
+react 16+, webpack 4.0+, react router 4.0+, mobx 5.0+
 
 ## Install
 
 ``` bash
-npx spinacia-cli
+npx spinacia-cli --mobx
 ```
 or
 
 ``` bash
-npx spinacia-cli <folder name>
+npx spinacia-cli --mobx <folder name>
 ```
 
 
@@ -44,21 +44,16 @@ spinacia-react-redux
     ├── config
     │   ├── router-core
     │   ├── env.js
-    │   ├── reducer.js
+    │   ├── store.js
     │   └── route.js
     ├── containers
     │   ├── App
-    │   │   ├── action.js
-    │   │   ├── constant.js
     │   │   ├── index.js
-    │   │   ├── reducer.js
+    │   │   ├── store.js
     │   │   └── style.less
     │   └── Main
-    │         ├── action
     │         ├── components
-    │         ├── connect
-    │         ├── constants
-    │         ├── reducers
+    │         ├── store
     │         ├── index.js
     │         ├── SPINACIA.svg
     │         └── style.less

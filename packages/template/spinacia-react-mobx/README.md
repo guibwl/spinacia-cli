@@ -11,12 +11,12 @@
 ## Install
 
 ``` bash
-npx spinacia-cli
+npx spinacia-cli --mobx
 ```
 or
 
 ``` bash
-npx spinacia-cli <folder name>
+npx spinacia-cli --mobx <folder name>
 ```
 
 *[npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) comes with npm 5.2+ and higher, run ```npm i -g npm``` to update
