@@ -1,7 +1,7 @@
 {
-  "name": "spinacia-react-redux",
+  "name": "spinacia-react-mobx",
   "version": "0.0.1",
-  "description": "react with redux",
+  "description": "react with mobx",
   "scripts": {
     "start": "cd build && node server.js",
     "test": "cross-env BABEL_ENV=test eslint app --fix",
@@ -17,7 +17,7 @@
     "type": "git",
     "url": "https://github.com/guibwl/spinacia-cli"
   },
-  "author": "guibwl",
+  "author": "anya16",
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^8.6.5",
