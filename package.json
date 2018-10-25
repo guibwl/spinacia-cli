@@ -1,18 +1,19 @@
 {
   "name": "spinacia-cli",
-  "version": "1.0.21",
-  "description": "a react cli",
+  "version": "1.0.22",
+  "description": "a react app create cli",
   "bin": {
     "spinacia-cli": "./bin/spinacia-cli.js"
   },
   "dependencies": {
     "chalk": "^2.4.1",
+    "commander": "^2.19.0",
     "fs-extra": "^7.0.0",
     "ora": "^3.0.0"
   },
   "devDependencies": {},
   "scripts": {
-    "start": "rm -rf ./spinacia-react-pure && spinacia-cli",
+    "start": "rm -rf ./spinacia-react-pure && spinacia-cli  --redux adf ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -24,12 +25,22 @@
     "react",
     "app",
     "react-app",
-    "redux app"
+    "redux app",
+    "mobx app"
   ],
   "repository": {
     "type": "git",
     "url": "https://github.com/guibwl/spinacia-cli"
   },
   "author": "guibwl",
+  "contributors": [
+    {
+      "name": "guibw",
+      "email": "228474838@qq.com"
+    },
+    {
+      "name": "anya16"
+    }
+  ],
   "license": "ISC"
 }
