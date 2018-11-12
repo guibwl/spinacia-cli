@@ -8,12 +8,13 @@ var program = require('commander');
 
 var proPath = process.cwd(); //project path
 var _cwd = path.resolve(__dirname, '../');
+var packageJson = require('../package.json');
 
 var cliDirName;
 var appDirName;
 
 program
-  .version('0.1.0')
+  .version(packageJson.version)
   .option('-p, --pure', 'install')
   .option('-r, --redux', 'install')
   .option('-m, --mobx', 'install')
