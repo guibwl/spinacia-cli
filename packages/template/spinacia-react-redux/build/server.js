@@ -4,7 +4,9 @@ const path = require('path');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const assets = require('./assets');
 
+const basePath = path.resolve(__dirname, '../');
 const PORT = 3000;
 
 new WebpackDevServer(webpack({
@@ -17,19 +19,23 @@ new WebpackDevServer(webpack({
   ],
   output: {
     publicPath:'./',
-    path: path.join(__dirname, '../dist'),
     filename: 'bundle.js'
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({
-      template: './index.html',
-      favicon: '../favicon.ico',
-      loading: {
-        html: fs.readFileSync(path.join(__dirname, './loading/loading.html')),
-        css: '<style>' + fs.readFileSync(path.join(__dirname, './loading/loading.css')) + '</style>'
-      }
-    })
+    new HtmlWebpackPlugin(Object.assign(
+      {
+        title: 'spinacia-react-redux',
+        template: './index.html',
+        inject: true,
+        favicon: path.join(basePath, 'favicon.ico'),
+        loading: {
+          html: fs.readFileSync(path.join(path.join(basePath, './build'), assets.prod.loading.html)),
+          css: '<style>' + fs.readFileSync(path.join(path.join(basePath, './build'), assets.prod.loading.css)) + '</style>'
+        }
+      },
+      assets.dev.cdn
+    ))
   ],
   resolve: {
     extensions: ['.js', '.jsx']
@@ -40,8 +46,8 @@ new WebpackDevServer(webpack({
         test: /\.jsx?$/,
         loader: 'babel-loader',
         include: [
-          path.join(__dirname, './'),
-          path.join(__dirname, '../app')
+          path.join(basePath, './app'),
+          path.join(basePath, './build')
         ]
       },
       {
