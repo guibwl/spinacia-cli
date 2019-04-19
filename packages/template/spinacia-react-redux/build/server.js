@@ -3,7 +3,9 @@ const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
+const PnpWebpackPlugin = require('pnp-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const assets = require('./assets');
 
 const basePath = path.resolve(__dirname, '../');
@@ -22,6 +24,7 @@ new WebpackDevServer(webpack({
     filename: 'bundle.js'
   },
   plugins: [
+    new CaseSensitivePathsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin(Object.assign(
       {
@@ -38,7 +41,19 @@ new WebpackDevServer(webpack({
     ))
   ],
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx'],
+    plugins: [
+      // Adds support for installing with Plug'n'Play, leading to faster installs and adding
+      // guards against forgotten dependencies and such.
+      PnpWebpackPlugin
+    ]
+  },
+  resolveLoader: {
+    plugins: [
+      // Also related to Plug'n'Play, but this time it tells Webpack to load its loaders
+      // from the current package.
+      PnpWebpackPlugin.moduleLoader(module),
+    ]
   },
   module: {
     rules: [
