@@ -28,6 +28,7 @@ module.exports = {
   "rules": {
     "no-debugger": process.env.NODE_ENV === 'production' ? 'error' : 'off',
     "no-global-assign": ["error"],
+    "quotes": ["error", "single", { "allowTemplateLiterals": true }],
     "indent": ["error", 2, {
       "SwitchCase": 1,
       "VariableDeclarator": {

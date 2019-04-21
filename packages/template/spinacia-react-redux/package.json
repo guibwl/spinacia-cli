@@ -3,15 +3,15 @@
   "version": "0.0.1",
   "description": "react with redux",
   "scripts": {
-    "start": "node ./build/server.js",
+    "start": "spinacia-script start",
     "test": "cross-env BABEL_ENV=test eslint app --fix",
-    "build": "cross-env BABEL_ENV=production BUILD_ENV=dev webpack --progress --mode production --config build/webpack.config.js",
-    "build:prod": "cross-env BABEL_ENV=production BUILD_ENV=prod webpack --progress --mode production --config build/webpack.config.js"
+    "build": "spinacia-script build",
+    "build:prod": "spinacia-script build:prod"
   },
   "keywords": [
-    "webpack",
-    "demo",
     "spinacia",
+    "react",
+    "react-redux",
     "cli"
   ],
   "repository": {
@@ -20,45 +20,7 @@
   },
   "author": "guibwl",
   "license": "ISC",
-  "devDependencies": {
-    "autoprefixer": "^8.6.5",
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-eslint": "^8.2.6",
-    "babel-loader": "^7.1.5",
-    "babel-plugin-import": "^1.8.0",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-1": "^6.24.1",
-    "babel-runtime": "^6.26.0",
-    "case-sensitive-paths-webpack-plugin": "^2.2.0",
-    "clean-webpack-plugin": "^2.0.1",
-    "cross-env": "^5.2.0",
-    "css-loader": "^1.0.0",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb": "^17.0.0",
-    "eslint-plugin-import": "^2.13.0",
-    "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-react": "^7.10.0",
-    "file-loader": "^1.1.11",
-    "html-webpack-plugin": "^3.2.0",
-    "less": "^3.7.1",
-    "less-loader": "^4.1.0",
-    "mini-css-extract-plugin": "^0.6.0",
-    "optimize-css-assets-webpack-plugin": "^5.0.1",
-    "pnp-webpack-plugin": "^1.4.1",
-    "postcss-loader": "^2.1.6",
-    "postcss-safe-parser": "^4.0.1",
-    "precss": "^3.1.2",
-    "raw-loader": "^0.5.1",
-    "style-loader": "^0.21.0",
-    "terser-webpack-plugin": "^1.2.3",
-    "url-loader": "^1.0.1",
-    "webpack": "^4.16.0",
-    "webpack-cli": "^3.0.8",
-    "webpack-dev-server": "^3.1.4"
-  },
+  "devDependencies": {},
   "dependencies": {
     "antd-mobile": "^2.2.2",
     "babel-polyfill": "^6.26.0",
@@ -76,5 +38,8 @@
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0",
     "vconsole": "^3.2.0"
+  },  
+  "eslintConfig": {
+    "extends": "../../eslint-config-spinacia-app/index.js"
   }
 }

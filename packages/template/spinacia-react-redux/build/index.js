@@ -10,10 +10,7 @@ ReactDOM.render(
 
 if (module.hot) {
   module.hot.accept('../app/index', () => {
+    
     window.location.reload();
-    // ReactDOM.render(
-    //   <MyComponent />,
-    //   document.getElementById('app')
-    // )
   });
 }
