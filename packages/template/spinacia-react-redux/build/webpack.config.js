@@ -11,8 +11,10 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const safePostCssParser = require('postcss-safe-parser');
 
 const assets = require('./assets');
+const ENV = require('./env.config');
 
 const basePath = path.resolve(__dirname, '../');
+const ENV_CONF = process.env.BUILD_ENV === 'prod' ? ENV.prod : ENV.dev;
 
 module.exports = {
   devtool: 'source-map',
@@ -20,9 +22,10 @@ module.exports = {
     app: path.join(basePath, './build')
   },
   output: {
-    path: path.resolve(basePath, './dist'),
+    path: path.resolve(basePath, './', 'dist'),
     chunkFilename: 'static/js/[name].[contenthash:8].js',
-    filename: '[name].[contenthash:8].js'
+    filename: '[name].[contenthash:8].js',
+    publicPath: ENV_CONF.publicPath || ''
   },
   externals: {
     'react': 'React',
@@ -146,7 +149,7 @@ module.exports = {
     )),
     new CleanWebpackPlugin()
   ].concat(process.env.TRAVIS_CI ? [] : [
-    new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
+    new webpack.DefinePlugin({ 'process.env.ORIGIN_ENV': JSON.stringify(ENV_CONF.origin) }),
     new webpack.optimize.ModuleConcatenationPlugin()
   ]),
   resolve: {
@@ -184,13 +187,7 @@ module.exports = {
               hmr: process.env.NODE_ENV === 'development',
               // if hmr does not work, this is a forceful method.
               reloadAll: true,
-              publicPath: (resourcePath, context) => {
-                
-                // publicPath is the relative path of the resource to the context
-                // e.g. for ./css/admin/main.css the publicPath will be ../../
-                // while for ./css/main.css the publicPath will be ../
-                return path.relative(path.dirname(resourcePath), context) + '/';
-              }
+              publicPath: '../../'
             }
           },
           'css-loader',
@@ -200,11 +197,22 @@ module.exports = {
       },
       {
         test: /\.(ttf|eot|svg|woff|woff2)(\?.+)?$/,
-        loader: 'file-loader?name=static/media/[name].[contenthash:8].[ext]'
+        loader: 'file-loader',
+        options: {
+          name: '[name].[contenthash:8].[ext]',
+          outputPath: 'static/media/',
+          publicPath: ENV_CONF.publicPath ? path.join(ENV_CONF.publicPath, 'static/media/') : ''
+        }
       },
       {
         test: /\.(jpe?g|png|gif)(\?.+)?$/,
-        loader: 'url-loader?name=static/media/[name].[contenthash:8].[ext]&limit=8000'
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: '[name].[contenthash:8].[ext]',
+          outputPath: 'static/media/',
+          publicPath: ENV_CONF.publicPath ? path.join(ENV_CONF.publicPath, 'static/media/') : ''
+        }
       },
       {
         test: /\.md$/,

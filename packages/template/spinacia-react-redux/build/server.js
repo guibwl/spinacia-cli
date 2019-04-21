@@ -7,6 +7,7 @@ const PnpWebpackPlugin = require('pnp-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const assets = require('./assets');
+const ENV_CONF = require('./env.config').dev;
 
 const basePath = path.resolve(__dirname, '../');
 const PORT = 3000;
@@ -24,6 +25,7 @@ new WebpackDevServer(webpack({
     filename: 'bundle.js'
   },
   plugins: [
+    new webpack.DefinePlugin({ 'process.env.ORIGIN_ENV': JSON.stringify(ENV_CONF.origin) }),
     new CaseSensitivePathsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin(Object.assign(
