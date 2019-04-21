@@ -3,10 +3,10 @@
   "version": "0.0.1",
   "description": "react with redux",
   "scripts": {
-    "start": "cd build && node server.js",
+    "start": "node ./build/server.js",
     "test": "cross-env BABEL_ENV=test eslint app --fix",
-    "build": "cd build && cross-env BABEL_ENV=production BUILD_ENV=dev webpack --progress --mode production",
-    "build:prod": "cd build && cross-env BABEL_ENV=production BUILD_ENV=prod webpack --progress --mode production"
+    "build": "cross-env BABEL_ENV=production BUILD_ENV=dev webpack --progress --mode production --config build/webpack.config.js",
+    "build:prod": "cross-env BABEL_ENV=production BUILD_ENV=prod webpack --progress --mode production --config build/webpack.config.js"
   },
   "keywords": [
     "webpack",

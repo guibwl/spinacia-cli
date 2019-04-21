@@ -13,7 +13,7 @@ const safePostCssParser = require('postcss-safe-parser');
 const assets = require('./assets');
 const ENV = require('./env.config');
 
-const basePath = path.resolve(__dirname, '../');
+const basePath = fs.realpathSync(process.cwd());
 const ENV_CONF = process.env.BUILD_ENV === 'prod' ? ENV.prod : ENV.dev;
 
 module.exports = {
@@ -22,7 +22,7 @@ module.exports = {
     app: path.join(basePath, './build')
   },
   output: {
-    path: path.resolve(basePath, './', 'dist'),
+    path: path.resolve(basePath, './', ENV_CONF.outputDir || 'dist'),
     chunkFilename: 'static/js/[name].[contenthash:8].js',
     filename: '[name].[contenthash:8].js',
     publicPath: ENV_CONF.publicPath || ''
@@ -137,9 +137,21 @@ module.exports = {
     new HtmlWebpackPlugin(Object.assign(
       {
         title: 'spinacia-react-redux',
-        template: './index.html',
+        template: path.join(basePath, 'build/index.html'),
         inject: true,
         favicon: path.join(basePath, 'favicon.ico'),
+        minify: {
+          removeComments: true,
+          collapseWhitespace: true,
+          removeRedundantAttributes: true,
+          useShortDoctype: true,
+          removeEmptyAttributes: true,
+          removeStyleLinkTypeAttributes: true,
+          keepClosingSlash: true,
+          minifyJS: true,
+          minifyCSS: true,
+          minifyURLs: true
+        },
         loading: {
           html: fs.readFileSync(path.join(path.join(basePath, './build'), assets.prod.loading.html)),
           css: '<style>' + fs.readFileSync(path.join(path.join(basePath, './build'), assets.prod.loading.css)) + '</style>'

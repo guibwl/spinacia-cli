@@ -6,10 +6,11 @@ const WebpackDevServer = require('webpack-dev-server');
 const PnpWebpackPlugin = require('pnp-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+
 const assets = require('./assets');
 const ENV_CONF = require('./env.config').dev;
 
-const basePath = path.resolve(__dirname, '../');
+const basePath = fs.realpathSync(process.cwd());
 const PORT = 3000;
 
 new WebpackDevServer(webpack({
@@ -18,7 +19,7 @@ new WebpackDevServer(webpack({
   entry: [
     `webpack-dev-server/client?http://localhost:${PORT}`,
     'webpack/hot/only-dev-server',
-    './index.js'
+    path.join(basePath, 'build/index.js')
   ],
   output: {
     publicPath:'./',
@@ -31,7 +32,7 @@ new WebpackDevServer(webpack({
     new HtmlWebpackPlugin(Object.assign(
       {
         title: 'spinacia-react-redux',
-        template: './index.html',
+        template: path.join(basePath, 'build/index.html'),
         inject: true,
         favicon: path.join(basePath, 'favicon.ico'),
         loading: {
