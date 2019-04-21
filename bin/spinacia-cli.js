@@ -46,6 +46,18 @@ var spinner = ora().start();
 spinner.color = 'yellow';
 spinner.text = appDirName + chalk.bold.blue(' installing');
 
+
+var pkgName = path.join(originDir, 'package.json');
+var pkgContent = fs.readFileSync(pkgName, 'utf8');
+
+var _pkgContent = JSON.parse(pkgContent);
+
+_pkgContent.eslintConfig = {
+  extends: 'spinacia-app'
+}
+
+fs.writeFileSync(pkgName, JSON.stringify(_pkgContent, null, 2));
+
 // Rename gitignore after the fact to prevent npm from renaming it to .npmignore
 // See: https://github.com/npm/npm/issues/1862
 try {
@@ -59,7 +71,7 @@ try {
   if (err.code === 'EEXIST') {
     const data = fs.readFileSync(path.join(originDir, 'gitignore'));
     fs.appendFileSync(path.join(originDir, '.gitignore'), data);
-    fs.unlinkSync(path.join(originDir, 'gitignore'));
+    // fs.unlinkSync(path.join(originDir, 'gitignore'));
   } else {
     throw err;
   }
