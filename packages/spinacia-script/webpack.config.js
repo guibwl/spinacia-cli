@@ -13,7 +13,7 @@ const postcssNormalize = require('postcss-normalize');
 
 const basePath = __dirname.indexOf(path.join('packages', 'spinacia-script')) !== -1
   ? path.join(__dirname, '../template/spinacia-react-redux/')
-  : fs.realpathSync(process.cwd());
+  : path.join(__dirname, '../../');
 
 
 const assets = require(path.join(basePath, 'build/assets'));
