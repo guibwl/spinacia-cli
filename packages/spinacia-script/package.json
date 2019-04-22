@@ -1,6 +1,6 @@
 {
   "name": "spinacia-script",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "spinacia script",
   "bin": {
     "spinacia-script": "bin/spinacia-script.js"
@@ -48,6 +48,7 @@
     "less": "^3.7.1",
     "less-loader": "^4.1.0",
     "mini-css-extract-plugin": "^0.6.0",
+    "open-browser-webpack-plugin": "^0.0.5",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "ost-ui": "^0.0.2",
     "pnp-webpack-plugin": "^1.4.1",

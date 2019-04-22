@@ -169,7 +169,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin(Object.assign(
       {
-        title: 'spinacia-react-redux',
+        title: typeof ENV_CONF.documentTitle === 'string' ? ENV_CONF.documentTitle : 'spinacia-react-redux',
         template: path.join(basePath, 'build/index.html'),
         inject: true,
         favicon: path.join(basePath, 'favicon.ico'),

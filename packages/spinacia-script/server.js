@@ -7,6 +7,7 @@ const PnpWebpackPlugin = require('pnp-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const postcssNormalize = require('postcss-normalize');
+const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
 const basePath = __dirname.indexOf(path.join('packages', 'spinacia-script')) !== -1
   ? path.join(__dirname, '../template/spinacia-react-redux/')
@@ -15,7 +16,7 @@ const basePath = __dirname.indexOf(path.join('packages', 'spinacia-script')) !==
 const assets = require(path.join(basePath, 'build/assets'));
 const ENV_CONF = require(path.join(basePath, 'build/env.config')).dev;
 
-const PORT = 3000;
+const PORT = ENV_CONF.port || 3000;
 
 const postcssOption = {
   // Options for PostCSS as we reference these options twice
@@ -61,7 +62,7 @@ new WebpackDevServer(webpack({
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin(Object.assign(
       {
-        title: 'spinacia-react-redux',
+        title: typeof ENV_CONF.documentTitle === 'string' ? ENV_CONF.documentTitle : 'spinacia-react-redux',
         template: path.join(basePath, 'build/index.html'),
         inject: true,
         favicon: path.join(basePath, 'favicon.ico'),
@@ -71,7 +72,8 @@ new WebpackDevServer(webpack({
         }
       },
       assets.dev.cdn
-    ))
+    )),
+    new OpenBrowserPlugin({ url: `http://localhost:${PORT}` })
   ],
   resolve: {
     extensions: ['.js', '.jsx'],

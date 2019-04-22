@@ -14,7 +14,6 @@ class Main extends Component {
     super(props, context);
     const { actions } = this.props;
     actions.initMainPage();
-    document.title = 'spinacia-react-redux';
   }
 
   render() {
