@@ -10,6 +10,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const safePostCssParser = require('postcss-safe-parser');
 const postcssNormalize = require('postcss-normalize');
+const WebpackAssetsManifest = require('webpack-assets-manifest');
 
 const basePath = __dirname.indexOf(path.join('packages', 'spinacia-script')) !== -1
   ? path.join(__dirname, '../template/spinacia-react-redux/')
@@ -192,7 +193,14 @@ module.exports = {
       },
       assets.prod.cdn
     )),
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new WebpackAssetsManifest({
+      output: 'build-assets.json',
+      publicPath(filename, manifest)
+      {
+        return path.join((ENV_CONF.publicPath || ''), filename);
+      }
+    })
   ].concat(process.env.TRAVIS_CI ? [] : [
     new webpack.DefinePlugin({ 'process.env.ORIGIN_ENV': JSON.stringify(ENV_CONF.origin) }),
     new webpack.optimize.ModuleConcatenationPlugin()
