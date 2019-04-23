@@ -67,12 +67,12 @@ new WebpackDevServer(webpack({
         inject: true,
         favicon: path.join(basePath, 'favicon.ico'),
         loading: {
-          html: fs.readFileSync(path.join(path.join(basePath, './build'), assets.prod.loading.html)),
-          css: '<style>' + fs.readFileSync(path.join(path.join(basePath, './build'), assets.prod.loading.css)) + '</style>'
+          html: fs.readFileSync(path.join(path.join(basePath, './build'), assets.dev.loading.html)),
+          css: '<style>' + fs.readFileSync(path.join(path.join(basePath, './build'), assets.dev.loading.css)) + '</style>'
         }
       },
       assets.dev.cdn,
-      assets.prod.lib
+      assets.dev.lib
     )),
     new OpenBrowserPlugin({ url: `http://localhost:${PORT}` })
   ],
