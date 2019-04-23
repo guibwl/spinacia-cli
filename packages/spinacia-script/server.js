@@ -102,9 +102,7 @@ new WebpackDevServer(webpack({
         use: [
           {
             options: {
-              // formatter: require("eslint-friendly-formatter"),
-              formatter: require('eslint/lib/formatters/stylish'),
-              // formatter: require.resolve('react-dev-utils/eslintFormatter'),
+              formatter: require("eslint-friendly-formatter"),
               eslintPath: require.resolve('eslint'),
               // @remove-on-eject-begin
               baseConfig: {
@@ -113,6 +111,7 @@ new WebpackDevServer(webpack({
               ignore: false,
               useEslintrc: false,
               // @remove-on-eject-end
+              fix: true
             },
             loader: require.resolve('eslint-loader'),
           },

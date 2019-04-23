@@ -1,6 +1,13 @@
 module.exports = {
   "root": true,
   "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+        "jsx": true
+    }
+},
   "extends": [
     "airbnb-base",
     "plugin:react/recommended",
@@ -24,6 +31,7 @@ module.exports = {
     "setTimeout": false,
     "wx": false,
     "$$": false,
+    "IMALL": false
   },
   "rules": {
     "no-debugger": process.env.NODE_ENV === 'production' ? 'error' : 'off',
@@ -34,7 +42,7 @@ module.exports = {
       "VariableDeclarator": {
         "var": 2,
         "let": 2,
-        "const": 3
+        "const": 2
       },
       "MemberExpression": 1,
       "FunctionExpression": {
@@ -59,7 +67,7 @@ module.exports = {
       "exports": "only-multiline",
       "functions": "never"
     }], // 要求或禁止使用拖尾逗号 (comma-dangle)
-    "prefer-destructuring": ["error", {
+    "prefer-destructuring": ["warn", {
       "object": true, // 强制对象
       "array": false
     }], // 优先使用数组和对象解构 (prefer-destructuring)
@@ -67,7 +75,7 @@ module.exports = {
       "skipBlankLines": true,
       "ignoreComments": true
     }], // 禁用行尾空白 (no-trailing-spaces)
-    "one-var": ["error", {
+    "one-var": ["warn", {
       var: "consecutive",
       let: "never",
       const: "never"
@@ -78,7 +86,6 @@ module.exports = {
     "no-bitwise": 0,
     "no-mixed-operators": 0,
     "no-useless-constructor": 0,
-    "react/prop-types": 0, // react prop-types
     "import/no-unresolved": 0,
     "no-new": 0,
     "react/no-string-refs": 0,
