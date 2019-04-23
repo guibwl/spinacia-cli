@@ -22,7 +22,7 @@
   "license": "ISC",
   "devDependencies": {},
   "dependencies": {
-    "spinacia-script": "^1.0.5",
+    "spinacia-script": "^1.0.6",
     "antd-mobile": "^2.2.2",
     "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.5",

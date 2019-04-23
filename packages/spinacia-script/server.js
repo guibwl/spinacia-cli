@@ -71,7 +71,8 @@ new WebpackDevServer(webpack({
           css: '<style>' + fs.readFileSync(path.join(path.join(basePath, './build'), assets.prod.loading.css)) + '</style>'
         }
       },
-      assets.dev.cdn
+      assets.dev.cdn,
+      assets.prod.lib
     )),
     new OpenBrowserPlugin({ url: `http://localhost:${PORT}` })
   ],
@@ -93,31 +94,31 @@ new WebpackDevServer(webpack({
   module: {
     strictExportPresence: true,
     rules: [
-      // // First, run the linter.
-      // // It's important to do this before Babel processes the JS.
-      // {
-      //   test: /\.(js|mjs|jsx|ts|tsx)$/,
-      //   enforce: 'pre',
-      //   use: [
-      //     {
-      //       options: {
-      //         // formatter: require("eslint-friendly-formatter"),
-      //         formatter: require('eslint/lib/formatters/stylish'),
-      //         // formatter: require.resolve('react-dev-utils/eslintFormatter'),
-      //         eslintPath: require.resolve('eslint'),
-      //         // @remove-on-eject-begin
-      //         baseConfig: {
-      //           extends: [path.join(__dirname, '/eslint-config/.eslintrc.js')],
-      //         },
-      //         ignore: false,
-      //         useEslintrc: false,
-      //         // @remove-on-eject-end
-      //       },
-      //       loader: require.resolve('eslint-loader'),
-      //     },
-      //   ],
-      //   include: [path.join(basePath, 'app'), path.join(basePath, 'build')]
-      // },
+      // First, run the linter.
+      // It's important to do this before Babel processes the JS.
+      {
+        test: /\.(js|mjs|jsx|ts|tsx)$/,
+        enforce: 'pre',
+        use: [
+          {
+            options: {
+              // formatter: require("eslint-friendly-formatter"),
+              formatter: require('eslint/lib/formatters/stylish'),
+              // formatter: require.resolve('react-dev-utils/eslintFormatter'),
+              eslintPath: require.resolve('eslint'),
+              // @remove-on-eject-begin
+              baseConfig: {
+                extends: [require.resolve('eslint-config-spinacia-app')],
+              },
+              ignore: false,
+              useEslintrc: false,
+              // @remove-on-eject-end
+            },
+            loader: require.resolve('eslint-loader'),
+          },
+        ],
+        include: [path.join(basePath, 'app'), path.join(basePath, 'build')]
+      },
       {
         test: /\.(js|jsx)?$/,
         loader: require.resolve('babel-loader'),

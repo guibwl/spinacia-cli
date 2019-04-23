@@ -1,6 +1,6 @@
 {
   "name": "spinacia-script",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "spinacia script",
   "bin": {
     "spinacia-script": "bin/spinacia-script.js"

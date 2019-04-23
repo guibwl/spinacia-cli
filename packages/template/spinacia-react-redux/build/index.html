@@ -13,6 +13,9 @@
     <% for (var i in htmlWebpackPlugin.options.css&&htmlWebpackPlugin.options.css) { %>
       <script src="<%= htmlWebpackPlugin.options.css[i] %>"></script>
     <% } %>
+    <% for (var i in htmlWebpackPlugin.options.styles&&htmlWebpackPlugin.options.styles) { %>
+      <script src="<%= htmlWebpackPlugin.options.styles[i] %>"></script>
+    <% } %>
   </head>
   <body>
     <script type="text/javascript">
@@ -22,6 +25,9 @@
     </script>
     <% for (var i in htmlWebpackPlugin.options.js&&htmlWebpackPlugin.options.js) { %>
         <script src="<%= htmlWebpackPlugin.options.js[i] %>"></script>
+    <% } %>
+    <% for (var i in htmlWebpackPlugin.options.scripts&&htmlWebpackPlugin.options.scripts) { %>
+      <script src="<%= htmlWebpackPlugin.options.scripts[i] %>"></script>
     <% } %>
     <div id="app" style="width:100%; height:100%" >
       <%= htmlWebpackPlugin.options.loading.html %>

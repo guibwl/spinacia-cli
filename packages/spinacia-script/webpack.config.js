@@ -21,7 +21,19 @@ const assets = require(path.join(basePath, 'build/assets'));
 const ENV = require(path.join(basePath, 'build/env.config'));
 
 const ENV_CONF = process.env.BUILD_ENV === 'prod' ? ENV.prod : ENV.dev;
+const _publicPath = (function () {
+  let _path = '';
 
+  if (ENV_CONF.publicPath && ENV_CONF.assetsPublicPath) {
+
+    _path = path.join(ENV_CONF.publicPath,  ENV_CONF.assetsPublicPath);
+  } else if (ENV_CONF.publicPath && !ENV_CONF.assetsPublicPath) {
+
+    _path = ENV_CONF.publicPath;
+  }
+
+  return _path;
+})();
 
 const postcssOption = {
   // Options for PostCSS as we reference these options twice
@@ -59,7 +71,7 @@ module.exports = {
     path: path.resolve(basePath, './', ENV_CONF.outputDir || 'dist'),
     chunkFilename: 'static/js/[name].[contenthash:8].js',
     filename: '[name].[contenthash:8].js',
-    publicPath: ENV_CONF.publicPath || ''
+    publicPath: _publicPath
   },
   externals: {
     'react': 'React',
@@ -191,14 +203,15 @@ module.exports = {
           css: '<style>' + fs.readFileSync(path.join(path.join(basePath, './build'), assets.prod.loading.css)) + '</style>'
         }
       },
-      assets.prod.cdn
+      assets.prod.cdn,
+      assets.prod.lib
     )),
     new CleanWebpackPlugin(),
     new WebpackAssetsManifest({
       output: 'build-assets.json',
       publicPath(filename, manifest)
       {
-        return path.join((ENV_CONF.publicPath || ''), filename);
+        return path.join(_publicPath, filename);
       }
     })
   ].concat(process.env.TRAVIS_CI ? [] : [
@@ -222,6 +235,31 @@ module.exports = {
   },
   module: {
     rules: [
+      // First, run the linter.
+      // It's important to do this before Babel processes the JS.
+      {
+        test: /\.(js|mjs|jsx|ts|tsx)$/,
+        enforce: 'pre',
+        use: [
+          {
+            options: {
+              // formatter: require("eslint-friendly-formatter"),
+              formatter: require('eslint/lib/formatters/stylish'),
+              // formatter: require.resolve('react-dev-utils/eslintFormatter'),
+              eslintPath: require.resolve('eslint'),
+              // @remove-on-eject-begin
+              baseConfig: {
+                extends: [require.resolve('eslint-config-spinacia-app')],
+              },
+              ignore: false,
+              useEslintrc: false,
+              // @remove-on-eject-end
+            },
+            loader: require.resolve('eslint-loader'),
+          },
+        ],
+        include: [path.join(basePath, 'app'), path.join(basePath, 'build')]
+      },
       {
         test: /\.jsx?$/,
         loader: 'babel-loader',
@@ -231,7 +269,6 @@ module.exports = {
         ],
         options: {
           babelrc: false,
-          // configFile: false,
           compact: false,
           presets: [
             [
@@ -299,7 +336,7 @@ module.exports = {
         options: {
           name: '[name].[contenthash:8].[ext]',
           outputPath: 'static/media/',
-          publicPath: ENV_CONF.publicPath ? path.join(ENV_CONF.publicPath, 'static/media/') : ''
+          publicPath: _publicPath ? path.join(_publicPath, 'static/media/') : ''
         }
       },
       {
@@ -309,7 +346,7 @@ module.exports = {
           limit: 10000,
           name: '[name].[contenthash:8].[ext]',
           outputPath: 'static/media/',
-          publicPath: ENV_CONF.publicPath ? path.join(ENV_CONF.publicPath, 'static/media/') : ''
+          publicPath: _publicPath ? path.join(_publicPath, 'static/media/') : ''
         }
       },
       {
