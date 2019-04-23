@@ -22,7 +22,7 @@
   "license": "ISC",
   "devDependencies": {},
   "dependencies": {
-    "spinacia-script": "^1.0.6",
+    "spinacia-script": "^1.0.8",
     "antd-mobile": "^2.2.2",
     "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.5",
@@ -38,7 +38,7 @@
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0"
-  },  
+  },
   "eslintConfig": {
     "extends": "../../eslint-config-spinacia-app/index.js"
   }

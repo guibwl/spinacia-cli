@@ -11,6 +11,7 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const safePostCssParser = require('postcss-safe-parser');
 const postcssNormalize = require('postcss-normalize');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
+const WebpackBar = require('webpackbar');
 
 const basePath = __dirname.indexOf(path.join('packages', 'spinacia-script')) !== -1
   ? path.join(__dirname, '../template/spinacia-react-redux/')
@@ -174,6 +175,11 @@ module.exports = {
     ]
   },
   plugins: [
+    new WebpackBar({
+      name: '[SPINACIA]',
+      profile: false,
+      basic: false
+    }),
     new CaseSensitivePathsPlugin(),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output

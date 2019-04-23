@@ -1,6 +1,6 @@
 {
   "name": "spinacia-script",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "spinacia script",
   "bin": {
     "spinacia-script": "bin/spinacia-script.js"
@@ -60,7 +60,8 @@
     "webpack": "^4.16.0",
     "webpack-assets-manifest": "^3.1.1",
     "webpack-cli": "^3.0.8",
-    "webpack-dev-server": "^3.1.4"
+    "webpack-dev-server": "^3.1.4",
+    "webpackbar": "^3.2.0"
   },
   "scripts": {
     "start": "node server.js",

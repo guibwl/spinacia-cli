@@ -8,6 +8,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const postcssNormalize = require('postcss-normalize');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
+const WebpackBar = require('webpackbar');
 
 const basePath = __dirname.indexOf(path.join('packages', 'spinacia-script')) !== -1
   ? path.join(__dirname, '../template/spinacia-react-redux/')
@@ -57,6 +58,11 @@ new WebpackDevServer(webpack({
     filename: 'bundle.js'
   },
   plugins: [
+    new WebpackBar({
+      name: '[SPINACIA]',
+      profile: false,
+      basic: false
+    }),
     new webpack.DefinePlugin({ 'process.env.ORIGIN_ENV': JSON.stringify(ENV_CONF.origin) }),
     new CaseSensitivePathsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
