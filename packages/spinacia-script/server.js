@@ -60,7 +60,7 @@ new WebpackDevServer(webpack({
   },
   plugins: [
     new WebpackBar({
-      name: '[SPINACIA]',
+      name: '[SPINACIA][DEV]',
       profile: false,
       basic: false
     }),
@@ -134,7 +134,6 @@ new WebpackDevServer(webpack({
         ],
         options: {
           babelrc: false,
-          // configFile: false,
           compact: false,
           presets: [
             [
@@ -152,9 +151,9 @@ new WebpackDevServer(webpack({
                   ]
                 },
                 'modules': false,
-                'loose': true,
-                'useBuiltIns': true,
-                'debug': true
+                'loose': false,
+                'useBuiltIns': false,
+                'debug': false
               }
             ],
             [require.resolve('babel-preset-react')],
@@ -204,7 +203,27 @@ new WebpackDevServer(webpack({
   publicPath: '/',
   hot: true,
   historyApiFallback: true,
-  stats: { colors: true }
+  stats: {
+    all: false,
+    colors: true,
+    assets: true,
+    assetsSort: "size",
+    builtAt: true,
+    cached: true,
+    env: true,
+    modules: true,
+    maxModules: 0,
+    performance: true,
+    publicPath: true,
+    version: true,
+    errors: true,
+    warnings: true,
+    // our additional options
+    moduleTrace: true,
+    errorDetails: true
+  },
+  compress: true,
+  clientLogLevel: 'error'
 }).listen(PORT, error => {
   if (error) {
     throw error;

@@ -178,7 +178,7 @@ module.exports = {
   },
   plugins: [
     new WebpackBar({
-      name: '[SPINACIA]',
+      name: '[SPINACIA][BUILD]',
       profile: false,
       basic: false
     }),
@@ -268,7 +268,7 @@ module.exports = {
         include: [path.join(basePath, 'app'), path.join(basePath, 'build')]
       } : {},
       {
-        test: /\.jsx?$/,
+        test: /\.(js|jsx)?$/,
         loader: 'babel-loader',
         include: [
           path.join(basePath, './app'),
@@ -282,7 +282,7 @@ module.exports = {
               require.resolve('babel-preset-env'),
               {
                 'targets': {
-                  'uglify': false,
+                  'uglify': true,
                   'browsers': [
                     'last 2 versions',
                     'Firefox ESR',
@@ -292,10 +292,10 @@ module.exports = {
                     'Android >= 4'
                   ]
                 },
-                'modules': false,
+                'modules': "umd",
                 'loose': false,
                 'useBuiltIns': false,
-                'debug': false
+                'debug': false // to console.log.
               }
             ],
             [require.resolve('babel-preset-react')],
@@ -361,5 +361,29 @@ module.exports = {
         loader : 'raw-loader'
       }
     ]
+  },
+  performance: {
+    hints: 'warning',
+    maxEntrypointSize: 250000,
+    maxAssetSize: 250000
+  },
+  stats: {
+    all: false,
+    colors: true,
+    assets: true,
+    assetsSort: "size",
+    builtAt: true,
+    cached: true,
+    env: true,
+    modules: true,
+    maxModules: 0,
+    performance: true,
+    publicPath: true,
+    version: true,
+    errors: true,
+    warnings: true,
+    // our additional options
+    moduleTrace: true,
+    errorDetails: true
   }
 };
