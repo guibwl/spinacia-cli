@@ -22,6 +22,8 @@ const assets = require(path.join(basePath, 'build/assets'));
 const ENV = require(path.join(basePath, 'build/env.config'));
 
 const ENV_CONF = process.env.BUILD_ENV === 'prod' ? ENV.prod : ENV.dev;
+const ESLINT = require(path.join(basePath, 'build/env.config')).eslint;
+
 const _publicPath = (function () {
   let _path = '';
 
@@ -243,7 +245,7 @@ module.exports = {
     rules: [
       // First, run the linter.
       // It's important to do this before Babel processes the JS.
-      {
+      (ESLINT && typeof ESLINT === 'boolean') ? {
         test: /\.(js|mjs|jsx|ts|tsx)$/,
         enforce: 'pre',
         use: [
@@ -264,7 +266,7 @@ module.exports = {
           },
         ],
         include: [path.join(basePath, 'app'), path.join(basePath, 'build')]
-      },
+      } : {},
       {
         test: /\.jsx?$/,
         loader: 'babel-loader',
@@ -280,7 +282,7 @@ module.exports = {
               require.resolve('babel-preset-env'),
               {
                 'targets': {
-                  'uglify': true,
+                  'uglify': false,
                   'browsers': [
                     'last 2 versions',
                     'Firefox ESR',
@@ -291,9 +293,9 @@ module.exports = {
                   ]
                 },
                 'modules': false,
-                'loose': true,
-                'useBuiltIns': true,
-                'debug': true
+                'loose': false,
+                'useBuiltIns': false,
+                'debug': false
               }
             ],
             [require.resolve('babel-preset-react')],

@@ -110,7 +110,7 @@ module.exports = {
     "no-console": 1,
     "react/sort-comp": 0,
     "react/prefer-stateless-function": 0,
-    "react/prop-types": [1, { "ignore": ["children", "key"] }],
+    "react/prop-types": [0, { "ignore": ["children", "key"] }],
     "react/no-find-dom-node": 0,
     "react/no-unused-prop-types": 1,
     "react/forbid-prop-types": [1, { "forbid": ["array"] }],

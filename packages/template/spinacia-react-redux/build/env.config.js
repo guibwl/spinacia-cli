@@ -2,6 +2,7 @@
 // this is match process.env.BUILD_ENV
 
 module.exports = {
+  eslint: true,
   // when use `npm start` will get part of this config
   // when use `npm run build` will get part of this config
   dev: {

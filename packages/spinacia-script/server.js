@@ -16,6 +16,7 @@ const basePath = __dirname.indexOf(path.join('packages', 'spinacia-script')) !==
 
 const assets = require(path.join(basePath, 'build/assets'));
 const ENV_CONF = require(path.join(basePath, 'build/env.config')).dev;
+const ESLINT = require(path.join(basePath, 'build/env.config')).eslint;
 
 const PORT = ENV_CONF.port || 3000;
 
@@ -102,7 +103,7 @@ new WebpackDevServer(webpack({
     rules: [
       // First, run the linter.
       // It's important to do this before Babel processes the JS.
-      {
+      (ESLINT && typeof ESLINT === 'boolean') ? {
         test: /\.(js|mjs|jsx|ts|tsx)$/,
         enforce: 'pre',
         use: [
@@ -123,7 +124,7 @@ new WebpackDevServer(webpack({
           },
         ],
         include: [path.join(basePath, 'app'), path.join(basePath, 'build')]
-      },
+      } : {},
       {
         test: /\.(js|jsx)?$/,
         loader: require.resolve('babel-loader'),
