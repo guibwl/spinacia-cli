@@ -150,7 +150,6 @@ new WebpackDevServer(webpack({
                     'Android >= 4'
                   ]
                 },
-                'modules': false,
                 'loose': false,
                 'useBuiltIns': false,
                 'debug': false
@@ -222,7 +221,7 @@ new WebpackDevServer(webpack({
     moduleTrace: true,
     errorDetails: true
   },
-  compress: true,
+  compress: false,
   clientLogLevel: 'error'
 }).listen(PORT, error => {
   if (error) {
