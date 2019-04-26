@@ -14,7 +14,7 @@ const basePath = __dirname.indexOf(path.join('packages', 'spinacia-script')) !==
   ? path.join(__dirname, '../template/spinacia-react-redux/')
   : fs.realpathSync(process.cwd());
 
-const assets = require(path.join(basePath, 'build/assets'));
+const assets = require(path.join(basePath, 'build/assets')).dev;
 const ENV_CONF = require(path.join(basePath, 'build/env.config')).dev;
 const ESLINT = require(path.join(basePath, 'build/env.config')).eslint;
 
@@ -74,12 +74,12 @@ new WebpackDevServer(webpack({
         inject: true,
         favicon: path.join(basePath, 'favicon.ico'),
         loading: {
-          html: fs.readFileSync(path.join(path.join(basePath, './build'), assets.dev.loading.html)),
-          css: '<style>' + fs.readFileSync(path.join(path.join(basePath, './build'), assets.dev.loading.css)) + '</style>'
+          html: fs.readFileSync(path.join(path.join(basePath, './build'), assets.loading.html)),
+          css: '<style>' + fs.readFileSync(path.join(path.join(basePath, './build'), assets.loading.css)) + '</style>'
         }
       },
-      assets.dev.cdn,
-      assets.dev.lib
+      assets.cdn,
+      assets.lib
     )),
     new OpenBrowserPlugin({ url: `http://localhost:${PORT}` })
   ],

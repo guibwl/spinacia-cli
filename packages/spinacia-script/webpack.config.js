@@ -18,11 +18,14 @@ const basePath = __dirname.indexOf(path.join('packages', 'spinacia-script')) !==
   : path.join(__dirname, '../../');
 
 
-const assets = require(path.join(basePath, 'build/assets'));
-const ENV = require(path.join(basePath, 'build/env.config'));
+const assetsFile = require(path.join(basePath, 'build/assets'));
+const assets = process.env.BUILD_ENV === 'prod' ? assetsFile.prod : assetsFile.dev;
 
+
+const ENV = require(path.join(basePath, 'build/env.config'));
 const ENV_CONF = process.env.BUILD_ENV === 'prod' ? ENV.prod : ENV.dev;
-const ESLINT = require(path.join(basePath, 'build/env.config')).eslint;
+
+const ESLINT = ENV.eslint;
 
 const _publicPath = (function () {
   let _path = '';
@@ -207,12 +210,12 @@ module.exports = {
           minifyURLs: true
         },
         loading: {
-          html: fs.readFileSync(path.join(path.join(basePath, './build'), assets.prod.loading.html)),
-          css: '<style>' + fs.readFileSync(path.join(path.join(basePath, './build'), assets.prod.loading.css)) + '</style>'
+          html: fs.readFileSync(path.join(path.join(basePath, './build'), assets.loading.html)),
+          css: '<style>' + fs.readFileSync(path.join(path.join(basePath, './build'), assets.loading.css)) + '</style>'
         }
       },
-      assets.prod.cdn,
-      assets.prod.lib
+      assets.cdn,
+      assets.lib
     )),
     new CleanWebpackPlugin(),
     new WebpackAssetsManifest({
