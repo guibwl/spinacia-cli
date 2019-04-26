@@ -1,6 +1,6 @@
 {
   "name": "spinacia-script",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "spinacia script",
   "bin": {
     "spinacia-script": "bin/spinacia-script.js"
@@ -34,7 +34,7 @@
     "css-loader": "^1.0.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^17.0.0",
-    "eslint-config-spinacia-app": "^1.0.2",
+    "eslint-config-spinacia-app": "^1.0.3",
     "eslint-friendly-formatter": "^4.0.1",
     "eslint-loader": "^2.1.2",
     "eslint-plugin-import": "^2.13.0",
