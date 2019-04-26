@@ -80,7 +80,7 @@ module.exports = {
       let: "never",
       const: "never"
     }],
-    "max-len": ["warn", {
+    "max-len": ["off", {
       "code": 120,
     }],
     "no-bitwise": 0,
