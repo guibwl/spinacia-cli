@@ -24,118 +24,118 @@ const postcssOption = {
   // Options for PostCSS as we reference these options twice
   // Adds vendor prefixing based on your specified browser support in
   // package.json
-  loader: require.resolve('postcss-loader'),
-  options: {
+  'loader': require.resolve('postcss-loader'),
+  'options': {
     // Necessary for external CSS imports to work
     // https://github.com/facebook/create-react-app/issues/2677
-    ident: 'postcss',
-    plugins: () => [
+    'ident': 'postcss',
+    'plugins': () => [
       require('postcss-flexbugs-fixes'),
       require('postcss-preset-env')({
-        autoprefixer: {
-          flexbox: 'no-2009',
+        'autoprefixer': {
+          'flexbox': 'no-2009',
         },
-        stage: 3,
+        'stage': 3,
       }),
       // Adds PostCSS Normalize as the reset css with default options,
       // so that it honors browserslist config in package.json
       // which in turn let's users customize the target behavior as per their needs.
       postcssNormalize(),
     ],
-    sourceMap: false
+    'sourceMap': false
   },
-}
+};
 
 new WebpackDevServer(webpack({
-  mode: 'development',
-  devtool: 'eval-source-map',
-  entry: [
+  'mode': 'development',
+  'devtool': 'eval-source-map',
+  'entry': [
     `webpack-dev-server/client?http://localhost:${PORT}`,
     'webpack/hot/only-dev-server',
     path.join(basePath, 'build/index.js')
   ],
-  output: {
-    publicPath:'./',
-    filename: 'bundle.js'
+  'output': {
+    'publicPath': './',
+    'filename': 'bundle.js'
   },
-  plugins: [
+  'plugins': [
     new WebpackBar({
-      name: '[SPINACIA][DEV]',
-      profile: false,
-      basic: false
+      'name': '[SPINACIA][DEV]',
+      'profile': false,
+      'basic': false
     }),
-    new webpack.DefinePlugin({ 'process.env.ORIGIN_ENV': JSON.stringify(ENV_CONF.origin) }),
+    new webpack.DefinePlugin({'process.env.ORIGIN_ENV': JSON.stringify(ENV_CONF.origin)}),
     new CaseSensitivePathsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin(Object.assign(
       {
-        title: typeof ENV_CONF.documentTitle === 'string' ? ENV_CONF.documentTitle : 'spinacia-react-redux',
-        template: path.join(basePath, 'build/index.html'),
-        inject: true,
-        favicon: path.join(basePath, 'favicon.ico'),
-        loading: {
-          html: fs.readFileSync(path.join(path.join(basePath, './build'), assets.loading.html)),
-          css: '<style>' + fs.readFileSync(path.join(path.join(basePath, './build'), assets.loading.css)) + '</style>'
+        'title': typeof ENV_CONF.documentTitle === 'string' ? ENV_CONF.documentTitle : 'spinacia-react-redux',
+        'template': path.join(basePath, 'build/index.html'),
+        'inject': true,
+        'favicon': path.join(basePath, 'favicon.ico'),
+        'loading': {
+          'html': fs.readFileSync(path.join(path.join(basePath, './build'), assets.loading.html)),
+          'css': `<style>${fs.readFileSync(path.join(path.join(basePath, './build'), assets.loading.css))}</style>`
         }
       },
       assets.cdn,
       assets.lib
     )),
-    new OpenBrowserPlugin({ url: `http://localhost:${PORT}` })
+    new OpenBrowserPlugin({'url': `http://localhost:${PORT}`})
   ],
-  resolve: {
-    extensions: ['.js', '.jsx'],
-    plugins: [
+  'resolve': {
+    'extensions': ['.js', '.jsx'],
+    'plugins': [
       // Adds support for installing with Plug'n'Play, leading to faster installs and adding
       // guards against forgotten dependencies and such.
       PnpWebpackPlugin
     ]
   },
-  resolveLoader: {
-    plugins: [
+  'resolveLoader': {
+    'plugins': [
       // Also related to Plug'n'Play, but this time it tells Webpack to load its loaders
       // from the current package.
       PnpWebpackPlugin.moduleLoader(module),
     ]
   },
-  module: {
-    strictExportPresence: true,
-    rules: [
+  'module': {
+    'strictExportPresence': true,
+    'rules': [
       // First, run the linter.
       // It's important to do this before Babel processes the JS.
-      (ESLINT && typeof ESLINT === 'boolean') ? {
-        test: /\.(js|mjs|jsx|ts|tsx)$/,
-        enforce: 'pre',
-        use: [
+      ESLINT && typeof ESLINT === 'boolean' ? {
+        'test': /\.(js|mjs|jsx|ts|tsx)$/,
+        'enforce': 'pre',
+        'use': [
           {
-            options: {
-              formatter: require("eslint-friendly-formatter"),
-              eslintPath: require.resolve('eslint'),
+            'options': {
+              'formatter': require('eslint-friendly-formatter'),
+              'eslintPath': require.resolve('eslint'),
               // @remove-on-eject-begin
-              baseConfig: {
-                extends: [require.resolve('eslint-config-spinacia-app')],
+              'baseConfig': {
+                'extends': [require.resolve('eslint-config-spinacia-app')],
               },
-              ignore: false,
-              useEslintrc: false,
+              'ignore': false,
+              'useEslintrc': false,
               // @remove-on-eject-end
-              fix: true
+              'fix': true
             },
-            loader: require.resolve('eslint-loader'),
+            'loader': require.resolve('eslint-loader'),
           },
         ],
-        include: [path.join(basePath, 'app'), path.join(basePath, 'build')]
+        'include': [path.join(basePath, 'app'), path.join(basePath, 'build')]
       } : {},
       {
-        test: /\.(js|jsx)?$/,
-        loader: require.resolve('babel-loader'),
-        include: [
+        'test': /\.(js|jsx)?$/,
+        'loader': require.resolve('babel-loader'),
+        'include': [
           path.join(basePath, './app'),
           path.join(basePath, './build')
         ],
-        options: {
-          babelrc: false,
-          compact: false,
-          presets: [
+        'options': {
+          'babelrc': false,
+          'compact': false,
+          'presets': [
             [
               require.resolve('babel-preset-env'),
               {
@@ -158,7 +158,7 @@ new WebpackDevServer(webpack({
             [require.resolve('babel-preset-react')],
             [require.resolve('babel-preset-stage-1')]
           ],
-          plugins: [
+          'plugins': [
             [
               require.resolve('babel-plugin-import'),
               {
@@ -173,56 +173,56 @@ new WebpackDevServer(webpack({
               }
             ]
           ],
-          cacheDirectory: true
+          'cacheDirectory': true
         }
       },
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader', postcssOption]
+        'test': /\.css$/,
+        'use': ['style-loader', 'css-loader', postcssOption]
       },
       {
-        test: /\.less$/,
-        use: ['style-loader', 'css-loader', postcssOption, 'less-loader']
+        'test': /\.less$/,
+        'use': ['style-loader', 'css-loader', postcssOption, 'less-loader']
       },
       {
-        test: /\.(eot|svg|ttf|woff|woff2)(\?.+)?$/,
-        loader : 'file-loader'
+        'test': /\.(eot|svg|ttf|woff|woff2)(\?.+)?$/,
+        'loader': 'file-loader'
       },
       {
-        test: /\.(jpe?g|png|gif)(\?.+)?$/,
-        loader : 'url-loader'
+        'test': /\.(jpe?g|png|gif)(\?.+)?$/,
+        'loader': 'url-loader'
       },
       {
-        test: /\.md$/,
-        loader : 'raw-loader'
+        'test': /\.md$/,
+        'loader': 'raw-loader'
       }
     ]
   }
 }), {
-  publicPath: '/',
-  hot: true,
-  historyApiFallback: true,
-  stats: {
-    all: false,
-    colors: true,
-    assets: true,
-    assetsSort: "size",
-    builtAt: true,
-    cached: true,
-    env: true,
-    modules: true,
-    maxModules: 0,
-    performance: true,
-    publicPath: true,
-    version: true,
-    errors: true,
-    warnings: true,
+  'publicPath': '/',
+  'hot': true,
+  'historyApiFallback': true,
+  'stats': {
+    'all': false,
+    'colors': true,
+    'assets': true,
+    'assetsSort': 'size',
+    'builtAt': true,
+    'cached': true,
+    'env': true,
+    'modules': true,
+    'maxModules': 0,
+    'performance': true,
+    'publicPath': true,
+    'version': true,
+    'errors': true,
+    'warnings': true,
     // our additional options
-    moduleTrace: true,
-    errorDetails: true
+    'moduleTrace': true,
+    'errorDetails': true
   },
-  compress: false,
-  clientLogLevel: 'error'
+  'compress': false,
+  'clientLogLevel': 'error'
 }).listen(PORT, error => {
   if (error) {
     throw error;
