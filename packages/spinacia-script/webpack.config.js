@@ -32,7 +32,7 @@ const _publicPath = (function () {
 
   if (ENV_CONF.publicPath && ENV_CONF.assetsPublicPath) {
 
-    _path = path.join(ENV_CONF.publicPath, ENV_CONF.assetsPublicPath);
+    _path = ENV_CONF.publicPath + ENV_CONF.assetsPublicPath;
   } else if (ENV_CONF.publicPath && !ENV_CONF.assetsPublicPath) {
 
     _path = ENV_CONF.publicPath;
@@ -222,7 +222,7 @@ module.exports = {
     new WebpackAssetsManifest({
       'output': 'build-assets.json',
       publicPath(filename) {
-        return path.join(_publicPath, filename);
+        return _publicPath + filename;
       }
     })
   ].concat(process.env.TRAVIS_CI ? [] : [
@@ -346,7 +346,7 @@ module.exports = {
         'options': {
           'name': '[name].[contenthash:8].[ext]',
           'outputPath': 'static/media/',
-          'publicPath': _publicPath ? path.join(_publicPath, 'static/media/') : ''
+          'publicPath': _publicPath ? `${_publicPath}/static/media/` : ''
         }
       },
       {
@@ -356,7 +356,7 @@ module.exports = {
           'limit': 10000,
           'name': '[name].[contenthash:8].[ext]',
           'outputPath': 'static/media/',
-          'publicPath': _publicPath ? path.join(_publicPath, 'static/media/') : ''
+          'publicPath': _publicPath ? `${_publicPath}/static/media/` : ''
         }
       },
       {
