@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-spinacia-app",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "eslint-config-spinacia-app",
   "main": "index.js",
   "scripts": {
