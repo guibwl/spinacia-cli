@@ -222,7 +222,7 @@ module.exports = {
     new WebpackAssetsManifest({
       'output': 'build-assets.json',
       publicPath(filename) {
-        return _publicPath + filename;
+        return `${_publicPath}/${filename}`;
       }
     })
   ].concat(process.env.TRAVIS_CI ? [] : [
@@ -317,7 +317,8 @@ module.exports = {
               {
                 'polyfill': false
               }
-            ]
+            ],
+            [require.resolve('babel-plugin-dynamic-import-webpack')]
           ],
           'cacheDirectory': true
         }

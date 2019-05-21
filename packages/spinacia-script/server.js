@@ -7,7 +7,6 @@ const PnpWebpackPlugin = require('pnp-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const postcssNormalize = require('postcss-normalize');
-const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const WebpackBar = require('webpackbar');
 
 const basePath = __dirname.indexOf(path.join('packages', 'spinacia-script')) !== -1
@@ -80,8 +79,7 @@ new WebpackDevServer(webpack({
       },
       assets.cdn,
       assets.lib
-    )),
-    new OpenBrowserPlugin({'url': `http://localhost:${PORT}`})
+    ))
   ],
   'resolve': {
     'extensions': ['.js', '.jsx'],
@@ -171,7 +169,8 @@ new WebpackDevServer(webpack({
               {
                 'polyfill': false
               }
-            ]
+            ],
+            [require.resolve('babel-plugin-dynamic-import-webpack')]
           ],
           'cacheDirectory': true
         }
@@ -202,6 +201,8 @@ new WebpackDevServer(webpack({
   'publicPath': '/',
   'hot': true,
   'historyApiFallback': true,
+  'open': true,
+  'openPage': '',
   'stats': {
     'all': false,
     'colors': true,

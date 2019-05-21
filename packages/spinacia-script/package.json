@@ -1,6 +1,6 @@
 {
   "name": "spinacia-script",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "spinacia script",
   "bin": {
     "spinacia-script": "bin/spinacia-script.js"
@@ -20,6 +20,7 @@
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.6",
     "babel-loader": "^7.1.5",
+    "babel-plugin-dynamic-import-webpack": "^1.1.0",
     "babel-plugin-import": "^1.8.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
@@ -44,7 +45,6 @@
     "less": "^3.7.1",
     "less-loader": "^4.1.0",
     "mini-css-extract-plugin": "^0.6.0",
-    "open-browser-webpack-plugin": "^0.0.5",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "pnp-webpack-plugin": "^1.4.1",
     "postcss-flexbugs-fixes": "^4.1.0",

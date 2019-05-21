@@ -6,7 +6,7 @@
     "start": "spinacia-script start",
     "test": "cross-env BABEL_ENV=test eslint app --fix",
     "build": "spinacia-script build",
-    "build:prod": "spinacia-script build:prod"
+    "build:prod": "spinacia-script build-prod"
   },
   "keywords": [
     "spinacia",
@@ -22,7 +22,7 @@
   "license": "ISC",
   "devDependencies": {},
   "dependencies": {
-    "spinacia-script": "^1.0.16",
+    "spinacia-script": "^1.0.19",
     "antd-mobile": "^2.2.2",
     "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.5",

@@ -1,6 +1,6 @@
 {
   "name": "spinacia-cli",
-  "version": "1.0.37",
+  "version": "1.0.39",
   "description": "a react app create cli",
   "bin": {
     "spinacia-cli": "./bin/spinacia-cli.js"

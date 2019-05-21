@@ -14,7 +14,7 @@ const spawn = require('cross-spawn');
 
 const args = process.argv.slice(2);
 const scriptIndex = args.findIndex(
-  x => x === 'build' || x === 'build:prod' || x === 'start' || x === 'test'
+  x => x === 'build' || x === 'build-prod' || x === 'start' || x === 'test'
 );
 
 const script = scriptIndex === -1 ? args[0] : args[scriptIndex];
@@ -22,16 +22,17 @@ const nodeArgs = scriptIndex > 0 ? args.slice(0, scriptIndex) : [];
 
 switch (script) {
   case 'build':
-  case 'build:prod':
+  case 'build-prod':
   case 'start':
   case 'test': {
     const result = spawn.sync(
       'node',
       nodeArgs
-        .concat(require.resolve('../scripts/' + script))
+        .concat(require.resolve(`../scripts/${script}`))
         .concat(args.slice(scriptIndex + 1)),
-      { stdio: 'inherit' }
+      {'stdio': 'inherit'}
     );
+
     if (result.signal) {
       if (result.signal === 'SIGKILL') {
         console.log(
@@ -52,7 +53,7 @@ switch (script) {
     break;
   }
   default:
-    console.log('Unknown script "' + script + '".');
+    console.log(`Unknown script "${script}".`);
     console.log('Perhaps you need to update react-scripts?');
     console.log(
       'See: https://facebook.github.io/create-react-app/docs/updating-to-new-releases'
