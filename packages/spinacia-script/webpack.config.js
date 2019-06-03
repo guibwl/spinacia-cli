@@ -1,5 +1,4 @@
 const fs = require('fs');
-const path = require('path');
 const webpack = require('webpack');
 const PnpWebpackPlugin = require('pnp-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -13,33 +12,12 @@ const postcssNormalize = require('postcss-normalize');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 const WebpackBar = require('webpackbar');
 
-const basePath = __dirname.indexOf(path.join('packages', 'spinacia-script')) !== -1
-  ? path.join(__dirname, '../template/spinacia-react-redux/')
-  : path.join(__dirname, '../../');
+const paths = require('./path');
 
+const ENV_CONF = require('./path').ENV_CONF;
 
-const assetsFile = require(path.join(basePath, 'build/assets'));
-const assets = process.env.BUILD_ENV === 'prod' ? assetsFile.prod : assetsFile.dev;
+const ESLINT = require('./path').ESLINT;
 
-
-const ENV = require(path.join(basePath, 'build/env.config'));
-const ENV_CONF = process.env.BUILD_ENV === 'prod' ? ENV.prod : ENV.dev;
-
-const ESLINT = ENV.eslint;
-
-const _publicPath = (function () {
-  let _path = '';
-
-  if (ENV_CONF.publicPath && ENV_CONF.assetsPublicPath) {
-
-    _path = ENV_CONF.publicPath + ENV_CONF.assetsPublicPath;
-  } else if (ENV_CONF.publicPath && !ENV_CONF.assetsPublicPath) {
-
-    _path = ENV_CONF.publicPath;
-  }
-
-  return _path;
-})();
 
 const postcssOption = {
   // Options for PostCSS as we reference these options twice
@@ -71,20 +49,20 @@ const postcssOption = {
 module.exports = {
   'devtool': 'source-map',
   'entry': {
-    'app': path.join(basePath, './build')
+    'app': paths.appIndexJs
   },
   'output': {
-    'path': path.resolve(basePath, './', ENV_CONF.outputDir || 'dist'),
+    'path': paths.appOutputDir,
     'chunkFilename': 'static/js/[name].[contenthash:8].js',
     'filename': '[name].[contenthash:8].js',
-    'publicPath': _publicPath
+    'publicPath': paths.publicPath
   },
   'externals': {
     'react': 'React',
     'react-dom': 'ReactDOM',
     'react-thunk': 'ReactThunk'
   },
-  'recordsPath': path.join(basePath, 'records.json'),
+  'recordsPath': paths.records,
   'optimization': {
     'minimize': true,
     'splitChunks': {
@@ -102,22 +80,6 @@ module.exports = {
           'chunks': 'all',
           'test': /[\\/]node_modules[\\/]/,
           'priority': 2,
-          'enforce': true
-        },
-        'commons': {
-          'name': 'commons',
-          'chunks': 'all',
-          'test': module => {
-            const filePath = module.nameForCondition && module.nameForCondition();
-            const rgx = new RegExp(`${basePath}/app/(index.jsx|components|config|css|utils)`);
-
-            if (rgx.test(filePath)) {
-              return true;
-            }
-
-            return false;
-          },
-          'priority': 1,
           'enforce': true
         }
       }
@@ -195,9 +157,9 @@ module.exports = {
     new HtmlWebpackPlugin(Object.assign(
       {
         'title': typeof ENV_CONF.documentTitle === 'string' ? ENV_CONF.documentTitle : 'spinacia-react-redux',
-        'template': path.join(basePath, 'build/index.html'),
+        'template': paths.appHtml,
         'inject': true,
-        'favicon': path.join(basePath, 'favicon.ico'),
+        'favicon': paths.favicon,
         'minify': {
           'removeComments': true,
           'collapseWhitespace': true,
@@ -211,18 +173,18 @@ module.exports = {
           'minifyURLs': true
         },
         'loading': {
-          'html': fs.readFileSync(path.join(path.join(basePath, './build'), assets.loading.html)),
-          'css': `<style>${fs.readFileSync(path.join(path.join(basePath, './build'), assets.loading.css))}</style>`
+          'html': fs.readFileSync(paths.loadingHtml),
+          'css': `<style>${fs.readFileSync(paths.loadingCss)}</style>`
         }
       },
-      assets.cdn,
-      assets.lib
+      paths.assetsCdn,
+      paths.assetsLib
     )),
     new CleanWebpackPlugin(),
     new WebpackAssetsManifest({
       'output': 'build-assets.json',
       publicPath(filename) {
-        return `${_publicPath}/${filename}`;
+        return `${paths.publicPath}/${filename}`;
       }
     })
   ].concat(process.env.TRAVIS_CI ? [] : [
@@ -268,15 +230,12 @@ module.exports = {
             'loader': require.resolve('eslint-loader'),
           },
         ],
-        'include': [path.join(basePath, 'app'), path.join(basePath, 'build')]
+        'include': [paths.appSrc, paths.appBuild]
       } : {},
       {
         'test': /\.(js|jsx)?$/,
         'loader': 'babel-loader',
-        'include': [
-          path.join(basePath, './app'),
-          path.join(basePath, './build')
-        ],
+        'include': [paths.appSrc, paths.appBuild],
         'options': {
           'babelrc': false,
           'compact': false,
@@ -347,7 +306,7 @@ module.exports = {
         'options': {
           'name': '[name].[contenthash:8].[ext]',
           'outputPath': 'static/media/',
-          'publicPath': _publicPath ? `${_publicPath}/static/media/` : ''
+          'publicPath': paths.appMedia
         }
       },
       {
@@ -357,7 +316,7 @@ module.exports = {
           'limit': 10000,
           'name': '[name].[contenthash:8].[ext]',
           'outputPath': 'static/media/',
-          'publicPath': _publicPath ? `${_publicPath}/static/media/` : ''
+          'publicPath': paths.appMedia
         }
       },
       {

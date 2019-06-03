@@ -1,6 +1,5 @@
 /* eslint import/no-extraneous-dependencies: ["off"] */
 const fs = require('fs');
-const path = require('path');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const PnpWebpackPlugin = require('pnp-webpack-plugin');
@@ -9,13 +8,11 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const postcssNormalize = require('postcss-normalize');
 const WebpackBar = require('webpackbar');
 
-const basePath = __dirname.indexOf(path.join('packages', 'spinacia-script')) !== -1
-  ? path.join(__dirname, '../template/spinacia-react-redux/')
-  : fs.realpathSync(process.cwd());
+const paths = require('./path');
 
-const assets = require(path.join(basePath, 'build/assets')).dev;
-const ENV_CONF = require(path.join(basePath, 'build/env.config')).dev;
-const ESLINT = require(path.join(basePath, 'build/env.config')).eslint;
+const ENV_CONF = require('./path').ENV_CONF;
+
+const ESLINT = require('./path').ESLINT;
 
 const PORT = ENV_CONF.port || 3000;
 
@@ -51,7 +48,7 @@ new WebpackDevServer(webpack({
   'entry': [
     `webpack-dev-server/client?http://localhost:${PORT}`,
     'webpack/hot/only-dev-server',
-    path.join(basePath, 'build/index.js')
+    paths.appIndexJs
   ],
   'output': {
     'publicPath': './',
@@ -69,16 +66,16 @@ new WebpackDevServer(webpack({
     new HtmlWebpackPlugin(Object.assign(
       {
         'title': typeof ENV_CONF.documentTitle === 'string' ? ENV_CONF.documentTitle : 'spinacia-react-redux',
-        'template': path.join(basePath, 'build/index.html'),
+        'template': paths.appHtml,
         'inject': true,
-        'favicon': path.join(basePath, 'favicon.ico'),
+        'favicon': paths.favicon,
         'loading': {
-          'html': fs.readFileSync(path.join(path.join(basePath, './build'), assets.loading.html)),
-          'css': `<style>${fs.readFileSync(path.join(path.join(basePath, './build'), assets.loading.css))}</style>`
+          'html': fs.readFileSync(paths.loadingHtml),
+          'css': `<style>${fs.readFileSync(paths.loadingCss)}</style>`
         }
       },
-      assets.cdn,
-      assets.lib
+      paths.assetsCdn,
+      paths.assetsLib
     ))
   ],
   'resolve': {
@@ -121,15 +118,12 @@ new WebpackDevServer(webpack({
             'loader': require.resolve('eslint-loader'),
           },
         ],
-        'include': [path.join(basePath, 'app'), path.join(basePath, 'build')]
+        'include': [paths.appSrc, paths.appBuild]
       } : {},
       {
         'test': /\.(js|jsx)?$/,
         'loader': require.resolve('babel-loader'),
-        'include': [
-          path.join(basePath, './app'),
-          path.join(basePath, './build')
-        ],
+        'include': [paths.appSrc, paths.appBuild],
         'options': {
           'babelrc': false,
           'compact': false,

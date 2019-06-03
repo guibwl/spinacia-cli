@@ -3,3 +3,7 @@
 /packages/eslint-config-spinacia-app
 /packages/spinacia-script
 
+package-lock.json
+records.json
+yarn-error.log
+
