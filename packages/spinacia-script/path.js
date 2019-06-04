@@ -20,7 +20,7 @@ const basePath = () => {
     return fs.realpathSync(process.cwd());
 
   }
-}
+};
 
 const resolveApp = relativePath => path.resolve(basePath(), relativePath);
 
@@ -63,25 +63,25 @@ const publicPath = () => {
 };
 
 
-const getServedPath = relativePath => publicPath().href 
-    ? url.resolve(publicPath().href, path.join(publicPath().pathname, relativePath)) 
-    : '';
+const getServedPath = relativePath => publicPath().href
+  ? url.resolve(publicPath().href, path.join(publicPath().pathname, relativePath))
+  : '';
 
 
 module.exports = {
-  appIndexJs: resolveApp('build/index.js'),
-  appOutputDir: resolveApp(ENV_CONF().outputDir || 'dist'),
-  appHtml: resolveApp('build/index.html'),
-  appSrc: resolveApp('app'),
-  appBuild: resolveApp('build'),
-  appMedia: getServedPath('/static/media/'),
-  records: resolveApp('records.json'),
-  favicon: resolveApp('favicon.ico'),
-  loadingHtml: path.join(resolveApp('build'), assets().loading.html),
-  loadingCss: path.join(resolveApp('build'), assets().loading.css),
-  assetsCdn: assets().cdn,
-  assetsLib: assets().lib,
-  publicPath: publicPath().href,
-  ENV_CONF: ENV_CONF(),
-  ESLINT: ESLINT()
-}
+  'appIndexJs': resolveApp('build/index.js'),
+  'appOutputDir': resolveApp(ENV_CONF().outputDir || 'dist'),
+  'appHtml': resolveApp('build/index.html'),
+  'appSrc': resolveApp('app'),
+  'appBuild': resolveApp('build'),
+  'appMedia': getServedPath('/static/media/'),
+  'records': resolveApp('records.json'),
+  'favicon': resolveApp('favicon.ico'),
+  'loadingHtml': path.join(resolveApp('build'), assets().loading.html),
+  'loadingCss': path.join(resolveApp('build'), assets().loading.css),
+  'assetsCdn': assets().cdn,
+  'assetsLib': assets().lib,
+  'publicPath': publicPath().href,
+  'ENV_CONF': ENV_CONF(),
+  'ESLINT': ESLINT()
+};

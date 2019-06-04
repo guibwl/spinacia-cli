@@ -11,13 +11,11 @@ const safePostCssParser = require('postcss-safe-parser');
 const postcssNormalize = require('postcss-normalize');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 const WebpackBar = require('webpackbar');
+const getCacheIdentifier = require('./utils/getCacheIdentifier');
 
 const paths = require('./path');
 
-const ENV_CONF = require('./path').ENV_CONF;
-
-const ESLINT = require('./path').ESLINT;
-
+const {ENV_CONF, ESLINT} = require('./path');
 
 const postcssOption = {
   // Options for PostCSS as we reference these options twice
@@ -233,36 +231,26 @@ module.exports = {
         'include': [paths.appSrc, paths.appBuild]
       } : {},
       {
-        'test': /\.(js|jsx)?$/,
+        'test': /\.(js|mjs|jsx|ts|tsx)?$/,
         'loader': 'babel-loader',
         'include': [paths.appSrc, paths.appBuild],
         'options': {
+          'customize': require.resolve('./babel/webpack-overrides.js'),
           'babelrc': false,
           'compact': false,
-          'presets': [
+          'presets': [require.resolve('./babel/preset.js')],
+          // Make sure we have a unique cache identifier, erring on the
+          // side of caution.
+          // We remove this when the user ejects because the default
+          // is sane and uses Babel options. Instead of options, we use
+          // the react-scripts and babel-preset-react-app versions.
+          'cacheIdentifier': getCacheIdentifier(
+            'production',
             [
-              require.resolve('babel-preset-env'),
-              {
-                'targets': {
-                  'uglify': true,
-                  'browsers': [
-                    'last 2 versions',
-                    'Firefox ESR',
-                    '> 1%',
-                    'ie >= 8',
-                    'iOS >= 8',
-                    'Android >= 4'
-                  ]
-                },
-                'modules': 'umd',
-                'loose': false,
-                'useBuiltIns': false,
-                'debug': false // to console.log.
-              }
-            ],
-            [require.resolve('babel-preset-react')],
-            [require.resolve('babel-preset-stage-1')]
-          ],
+              'babel-plugin-named-asset-import',
+              'spinacia-script',
+            ]
+          ),
           'plugins': [
             [
               require.resolve('babel-plugin-import'),
@@ -272,12 +260,15 @@ module.exports = {
               }
             ],
             [
-              require.resolve('babel-plugin-transform-runtime'),
+              require.resolve('babel-plugin-named-asset-import'),
               {
-                'polyfill': false
-              }
+                'loaderMap': {
+                  'svg': {
+                    'ReactComponent': '@svgr/webpack?-svgo,+ref![path]',
+                  },
+                },
+              },
             ],
-            [require.resolve('babel-plugin-dynamic-import-webpack')]
           ],
           'cacheDirectory': true
         }
