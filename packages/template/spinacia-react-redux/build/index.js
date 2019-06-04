@@ -1,7 +1,7 @@
+import '@babel/polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'babel-polyfill';
-import MyComponent from '../app/index'
+import MyComponent from '../app/index';
 
 ReactDOM.render(
   <MyComponent />,
@@ -10,7 +10,7 @@ ReactDOM.render(
 
 if (module.hot) {
   module.hot.accept('../app/index', () => {
-    
+
     window.location.reload();
   });
 }
