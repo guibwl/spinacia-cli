@@ -182,7 +182,7 @@ module.exports = {
     new WebpackAssetsManifest({
       'output': 'build-assets.json',
       publicPath(filename) {
-        return `${paths.publicPath}/${filename}`;
+        return `${paths.publicPath}${filename}`;
       }
     })
   ].concat(process.env.TRAVIS_CI ? [] : [
