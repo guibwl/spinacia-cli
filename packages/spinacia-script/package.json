@@ -1,6 +1,6 @@
 {
   "name": "spinacia-script",
-  "version": "1.0.20",
+  "version": "1.0.22-beta",
   "description": "spinacia script",
   "bin": {
     "spinacia-script": "bin/spinacia-script.js"
@@ -72,9 +72,9 @@
     "webpackbar": "^3.2.0"
   },
   "scripts": {
-    "start": "cross-env BABEL_ENV=development node server.js",
-    "test": "cross-env BABEL_ENV=test eslint app --fix",
-    "build": "cross-env BABEL_ENV=production BUILD_ENV=dev webpack --mode production --config webpack.config.js",
-    "build:prod": "cross-env BABEL_ENV=production BUILD_ENV=prod webpack --mode production --config webpack.config.js"
+    "start": "cross-env NODE_ENV=development BABEL_ENV=development node server.js",
+    "test": "cross-env NODE_ENV=test BABEL_ENV=test eslint app --fix",
+    "build": "cross-env NODE_ENV=production BABEL_ENV=production BUILD_ENV=dev webpack --mode production --config webpack.config.js",
+    "build:prod": "cross-env NODE_ENV=production BABEL_ENV=production BUILD_ENV=prod webpack --mode production --config webpack.config.js"
   }
 }
