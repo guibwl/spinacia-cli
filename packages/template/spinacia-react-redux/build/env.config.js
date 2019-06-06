@@ -31,10 +31,10 @@ module.exports = {
     // after build all assets files assetsPublicPath
     // when publicPath did not set, `assetsPublicPath` will not working
     // example, in `https://prod.origin/my-app/webapp/index.html` this url, `/my-app/webapp/` is your assetsPublicPath
-    assetsPublicPath: '',
+    assetsPublicPath: '/my-app/webapp/',
     // after build all assets files publicPath, it will be relative path when this is empty
     // example, in `https://prod.origin/my-app/webapp/index.html` this url, `https://prod.origin` is your publicPath
-    publicPath: '/Users/liuyuan076/workspace-private/spinacia-cli/packages/template/spinacia-react-redux/dist',
+    publicPath: 'https://prod.origin/',
     // this is for fetch(...), get by `process.env.ORIGIN_ENV` in you code
     origin: 'https://prod.origin',
     // output directory name

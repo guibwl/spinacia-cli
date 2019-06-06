@@ -14,9 +14,9 @@
   "devDependencies": {},
   "scripts": {
     "start": "rm -rf ./spinacia-react-redux && spinacia-cli",
-    "start:redux": "cd packages/spinacia-script && node bin/spinacia-script.js start",
+    "start:redux": "cd packages/spinacia-script && NODE_ENV=development BABEL_ENV=development node bin/spinacia-script.js start",
     "build": "cd packages/spinacia-script && node bin/spinacia-script.js build",
-    "build:prod": "cd packages/spinacia-script && node bin/spinacia-script.js build:prod",
+    "build:prod": "cd packages/spinacia-script && node bin/spinacia-script.js build-prod",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

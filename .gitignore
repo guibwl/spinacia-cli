@@ -6,4 +6,7 @@ Thumbs.db
 .vscode
 Makefile
 yarn.lock
+package-lock.json
+records.json
+yarn-error.log
 /spinacia-react-redux
