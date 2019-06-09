@@ -82,6 +82,7 @@ module.exports = {
   'assetsCdn': assets().cdn,
   'assetsLib': assets().lib,
   'publicPath': publicPath().href,
+  'getServedPath': getServedPath,
   'ENV_CONF': ENV_CONF(),
   'ESLINT': ESLINT()
 };

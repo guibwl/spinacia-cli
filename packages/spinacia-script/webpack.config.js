@@ -173,7 +173,13 @@ module.exports = {
     new WebpackAssetsManifest({
       'output': 'build-assets.json',
       publicPath(filename) {
-        return `${paths.publicPath}${filename}`;
+        const assetsPath = paths.getServedPath(filename);
+
+        if (assetsPath) {
+          return assetsPath;
+        } else {
+          return filename;
+        }
       }
     }),
     new webpack.HashedModuleIdsPlugin()
