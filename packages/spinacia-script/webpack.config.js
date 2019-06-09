@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const webpack = require('webpack');
 const PnpWebpackPlugin = require('pnp-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -46,14 +47,19 @@ const postcssOption = {
 
 module.exports = {
   'devtool': 'source-map',
+  // Stop compilation early in production
+  'bail': true,
   'entry': {
     'app': paths.appIndexJs
   },
   'output': {
     'path': paths.appOutputDir,
-    'chunkFilename': 'static/js/[name].[contenthash:8].js',
-    'filename': '[name].[contenthash:8].js',
-    'publicPath': paths.publicPath
+    'chunkFilename': 'static/js/[name].[contenthash:8].chunk.js',
+    'filename': 'static/js/[name].[contenthash:8].js',
+    'publicPath': paths.publicPath,
+    'devtoolModuleFilenameTemplate': info => path
+      .relative(paths.appSrc, info.absoluteResourcePath)
+      .replace(/\\/g, '/')
   },
   'externals': {
     'react': 'React',
@@ -65,24 +71,8 @@ module.exports = {
     'minimize': true,
     'splitChunks': {
       'chunks': 'all',
-      'cacheGroups': {
-        'vendor': {
-          'name': 'vendors',
-          'chunks': 'all',
-          'test': /[\\/]node_modules[\\/].+(react|redux)/,
-          'priority': 3,
-          'enforce': true
-        },
-        'dependencies': {
-          'name': 'dependencies',
-          'chunks': 'all',
-          'test': /[\\/]node_modules[\\/]/,
-          'priority': 2,
-          'enforce': true
-        }
-      }
     },
-    'runtimeChunk': {'name': 'manifest'},
+    'runtimeChunk': true,
     'minimizer': [
       new TerserJSPlugin({
         'terserOptions': {
@@ -147,6 +137,7 @@ module.exports = {
       'basic': false
     }),
     new CaseSensitivePathsPlugin(),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
@@ -184,7 +175,8 @@ module.exports = {
       publicPath(filename) {
         return `${paths.publicPath}${filename}`;
       }
-    })
+    }),
+    new webpack.HashedModuleIdsPlugin()
   ].concat(process.env.TRAVIS_CI ? [] : [
     new webpack.DefinePlugin({'process.env.ORIGIN_ENV': JSON.stringify(ENV_CONF.origin)}),
     new webpack.optimize.ModuleConcatenationPlugin()
@@ -320,6 +312,18 @@ module.exports = {
     'hints': 'warning',
     'maxEntrypointSize': 250000,
     'maxAssetSize': 250000
+  },
+  // Some libraries import Node modules but don't use them in the browser.
+  // Tell Webpack to provide empty mocks for them so importing them works.
+  'node': {
+    'module': 'empty',
+    'dgram': 'empty',
+    'dns': 'mock',
+    'fs': 'empty',
+    'http2': 'empty',
+    'net': 'empty',
+    'tls': 'empty',
+    'child_process': 'empty',
   },
   'stats': {
     'all': false,

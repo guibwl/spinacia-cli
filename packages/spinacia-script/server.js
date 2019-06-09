@@ -1,5 +1,6 @@
 /* eslint import/no-extraneous-dependencies: ["off"] */
 const fs = require('fs');
+const path = require('path');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const PnpWebpackPlugin = require('pnp-webpack-plugin');
@@ -51,7 +52,8 @@ new WebpackDevServer(webpack({
   ],
   'output': {
     'publicPath': './',
-    'filename': 'bundle.js'
+    'filename': 'bundle.js',
+    'devtoolModuleFilenameTemplate': info => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/')
   },
   'plugins': [
     new WebpackBar({
