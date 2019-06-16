@@ -1,0 +1,44 @@
+{
+  "name": "spinacia-cli",
+  "version": "1.0.39",
+  "description": "a react app create cli",
+  "bin": {
+    "spinacia-cli": "./index.js"
+  },
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "commander": "^2.19.0",
+    "envinfo": "^7.3.1",
+    "fs-extra": "^7.0.0",
+    "latest-version": "^5.1.0",
+    "ora": "^3.0.0"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "webpack",
+    "demo",
+    "spinacia",
+    "cli",
+    "spinacia-cli",
+    "react",
+    "app",
+    "react-app",
+    "redux app",
+    "mobx app"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/guibwl/spinacia-cli"
+  },
+  "author": "guibwl",
+  "contributors": [
+    {
+      "name": "guibw",
+      "email": "228474838@qq.com"
+    },
+    {
+      "name": "anya16"
+    }
+  ],
+  "license": "ISC"
+}
