@@ -17,7 +17,7 @@
     "start:redux": "cd packages/spinacia-script && NODE_ENV=development BABEL_ENV=development node bin/spinacia-script.js start",
     "build": "cd packages/spinacia-script && node bin/spinacia-script.js build",
     "build:prod": "cd packages/spinacia-script && node bin/spinacia-script.js build-prod",
-    "spinacia-cli": "node task/sCli.js",
+    "spinacia-cli": "node tasks/sCli.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
