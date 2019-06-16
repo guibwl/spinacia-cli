@@ -3,7 +3,11 @@ const path = require('path');
 const latestVersion = require('latest-version');
 
 
-const createPkgJson = async (templateDir, installPath) => {
+const createPkgJson = async (
+  templateDir, 
+  installPath, 
+  scriptsVersion
+) => {
 
     const installPkgJson = path.resolve(installPath, 'package.json');
     const appName = path.basename(installPath);
@@ -48,7 +52,7 @@ const createPkgJson = async (templateDir, installPath) => {
               "react-router-dom": "^4.3.1",
               "redux": "^4.0.0",
               "redux-thunk": "^2.3.0",
-              "spinacia-script": `^${await latestVersion('spinacia-script')}`
+              "spinacia-script": scriptsVersion || `^${await latestVersion('spinacia-script')}`
             },
             "eslintConfig": {
               "extends": "spinacia-app"
@@ -62,4 +66,4 @@ const createPkgJson = async (templateDir, installPath) => {
     
 }
 
-export default createPkgJson;
+module.exports = createPkgJson;

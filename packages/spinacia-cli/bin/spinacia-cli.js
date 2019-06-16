@@ -20,6 +20,8 @@ const packageJson = require('../package.json');
 // customizeDirName set by user
 let customizeDirName;
 
+let scriptsVersion;
+
 // default appDirName is 'spinacia-react-redux'
 let appDirName = 'spinacia-react-redux';
 
@@ -75,39 +77,41 @@ if (program.mobx) {
   appDirName = 'spinacia-react-mobx';
 }
 
-(async () => {
-    // start loading in terminal
-    const spinner = ora().start();
-    // install loding...
-    spinner.color = 'yellow';
-    spinner.text = appDirName + chalk.bold.blue(' installing');
+if (program.scriptsVersion.match(/^.+\.(tgz|tar\.gz)$/)) {
+  scriptsVersion = `file:${program.scriptsVersion}`;
+}
+
+// start loading in terminal
+const spinner = ora().start();
+// install loding...
+spinner.color = 'yellow';
+spinner.text = appDirName + chalk.bold.blue(' installing');
 
 
-    // template directory path
-    const templateDir = path.join(cliPath, `/template/${appDirName}`);
-    // user install app path
-    // if user set `customizeDirName`, then install to customize path
-    const installDir = path.join(cwd + '/' + (customizeDirName || appDirName));
+// template directory path
+const templateDir = path.join(cliPath, `/template/${appDirName}`);
+// user install app path
+// if user set `customizeDirName`, then install to customize path
+const installDir = path.join(cwd + '/' + (customizeDirName || appDirName));
 
 
-    // copy template to user install path
-    fs.copy(templateDir, installDir)
-      .then(() => {
+// copy template to user install path
+fs.copy(templateDir, installDir)
+  .then(async () => {
 
-        createPkgJson(templateDir, installDir);
-        createGitignore(installDir);
+    await createPkgJson(templateDir, installDir, scriptsVersion);
+    createGitignore(installDir);
 
-        // clean spinner loading...
-        spinner.info('');
-        spinner.succeed([appDirName + chalk.bold.green(' has installed')])
-      })
-      .catch(err => {
-        
-        console.error(err)
-        process.exit(1);
-      })
+    // clean spinner loading...
+    spinner.info('');
+    spinner.succeed([appDirName + chalk.bold.green(' has installed')])
+  })
+  .catch(err => {
+    
+    console.error(err)
+    process.exit(1);
+  })
 
-})();
 
 
 function createGitignore(instalDir) {
@@ -130,3 +134,4 @@ function createGitignore(instalDir) {
       }
     }
 }
+
