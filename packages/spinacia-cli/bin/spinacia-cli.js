@@ -6,6 +6,9 @@ const chalk = require('chalk')
 const ora = require('ora');
 const commander = require('commander');
 const envinfo = require('envinfo');
+const inquirer = require('inquirer');
+const spawn = require('cross-spawn');
+
 const createPkgJson = require('./createPkgJson');
 
 // project path
@@ -105,6 +108,8 @@ fs.copy(templateDir, installDir)
     // clean spinner loading...
     spinner.info('');
     spinner.succeed([appDirName + chalk.bold.green(' has installed')])
+
+    inquirerNpmInstall(installDir);
   })
   .catch(err => {
     
@@ -135,3 +140,45 @@ function createGitignore(instalDir) {
     }
 }
 
+function inquirerNpmInstall (installDir) {
+
+  return inquirer
+        .prompt({
+          type: 'confirm',
+          name: 'autoNpmInstall',
+          message: 'Do you want `npm install` for your app?',
+          default: false,
+        })
+        .then(answer => {
+          if (answer.autoNpmInstall) {
+
+            console.log('Installing packages. This might take a couple of minutes.');
+
+            const installSpawn = spawn(
+              'npm',
+              [
+                'install',
+                '--loglevel',
+                'error'
+              ],
+              { 
+                stdio: 'inherit',
+                cwd: installDir
+              }
+            )
+
+            installSpawn.on('close', code => {
+              if (code !== 0) {
+                process.exit(1);
+              }
+              
+              console.log('Done!');
+
+            });
+
+          } else {
+            process.exit(0);
+          }
+        });
+
+}
