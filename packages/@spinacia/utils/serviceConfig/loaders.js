@@ -59,10 +59,10 @@ const oneOf = [{
   'loader': 'babel-loader',
   'include': checkPathExists(paths.appSrc, paths.appBuild, `${process.cwd()}/src`),
   'options': {
-    'customize': require.resolve('@spinacia/babel-preset/webpack-overrides.js'),
+    'customize': require.resolve('@spinacia/babel-preset-app/webpack-overrides.js'),
     'babelrc': false,
     'compact': false,
-    'presets': [require.resolve('@spinacia/babel-preset')],
+    'presets': [require.resolve('@spinacia/babel-preset-app')],
     // Make sure we have a unique cache identifier, erring on the
     // side of caution.
     // We remove this when the user ejects because the default
@@ -74,7 +74,7 @@ const oneOf = [{
         : isEnvDevelopment && 'development',
       [
         'babel-plugin-named-asset-import',
-        '@spinacia/babel-preset',
+        '@spinacia/babel-preset-app',
         '@spinacia/utils',
         '@spinacia/script',
       ]
@@ -92,7 +92,7 @@ const oneOf = [{
     compact: false,
     presets: [
       [
-        require.resolve('@spinacia/babel-preset/dependencies'),
+        require.resolve('@spinacia/babel-preset-app/dependencies'),
         { helpers: true },
       ],
     ],
@@ -105,7 +105,7 @@ const oneOf = [{
         : isEnvDevelopment && 'development',
       [
         'babel-plugin-named-asset-import',
-        '@spinacia/babel-preset',
+        '@spinacia/babel-preset-app',
         '@spinacia/utils',
         '@spinacia/script',
       ]
@@ -181,7 +181,7 @@ const loaders = {
             'eslintPath': require.resolve('eslint'),
             // @remove-on-eject-begin
             'baseConfig': {
-              'extends': [require.resolve('@spinacia/eslint-config')],
+              'extends': [require.resolve('@spinacia/eslint-config-app')],
             },
             'ignore': false,
             'useEslintrc': false,

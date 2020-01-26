@@ -12,7 +12,7 @@ const fs = require("fs-extra");
 
 
 const rootDir = path.join(__dirname, '..');
-const packagesDir = path.join(rootDir, 'packages');
+const packagesDir = path.join(rootDir, 'packages', '@spinacia');
 
 
 fs.readdirSync(packagesDir).forEach(name => {

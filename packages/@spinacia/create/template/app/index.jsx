@@ -1,4 +1,3 @@
-import { consts } from 'yzt-jssdk';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
@@ -12,9 +11,6 @@ import './css/common.less';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 /* eslint-enable */
 
-if(window.VConsole && consts.isStg() ){
-    new window.VConsole();
-}
 
 const store = createStore(
   rootReducer,
