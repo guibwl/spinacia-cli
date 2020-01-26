@@ -126,7 +126,7 @@ fs.copy(templatePath, installPath)
                 const {installDependencies} = answers;
 
                 if (installDependencies) {
-                  spawn('npm', ['install'], { stdio: 'inherit', cwd: installPath });
+                  spawn.sync('npm', ['install'], { stdio: 'inherit', cwd: installPath });
                 }
         });
       
