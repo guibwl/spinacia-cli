@@ -3,8 +3,10 @@
 var fs = require("fs-extra");
 var path = require('path');
 var chalk = require('chalk')
+var spawn = require('cross-spawn');
 var ora = require('ora');
 var program = require('commander');
+var inquirer = require('inquirer');
 
 var processPath = fs.realpathSync(process.cwd()); //project path
 var _cwd = path.resolve(__dirname, "../");
@@ -112,6 +114,22 @@ fs.copy(templatePath, installPath)
 
       spinner.info('');
       spinner.succeed([cliDirName + chalk.bold.green(' has installed')])
+
+      // install dependencies
+       inquirer
+        .prompt([{
+            type: 'confirm',
+            name: 'installDependencies',
+            message: 'want install dependencies?'
+        }])
+        .then(answers => {
+                const {installDependencies} = answers;
+
+                if (installDependencies) {
+                  spawn('npm', ['install'], { stdio: 'inherit', cwd: installPath });
+                }
+        });
+      
     }, 1500);
   })
   .catch(err => console.error(err))
