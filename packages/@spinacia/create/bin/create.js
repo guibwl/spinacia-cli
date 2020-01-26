@@ -89,16 +89,16 @@ fs.writeFileSync(packagePath, JSON.stringify(newPackageJson, null, 2));
 // See: https://github.com/npm/npm/issues/1862
 try {
   fs.moveSync(
-    path.join(templatePath, 'gitignore'),
-    path.join(templatePath, '.gitignore'),
+    path.join(installPath, 'gitignore'),
+    path.join(installPath, '.gitignore'),
     []
   );
 } catch (err) {
   // Append if there's already a `.gitignore` file there
   if (err.code === 'EEXIST') {
-    const data = fs.readFileSync(path.join(templatePath, 'gitignore'));
-    fs.appendFileSync(path.join(templatePath, '.gitignore'), data);
-    // fs.unlinkSync(path.join(templatePath, 'gitignore'));
+    const data = fs.readFileSync(path.join(installPath, 'gitignore'));
+    fs.appendFileSync(path.join(installPath, '.gitignore'), data);
+    fs.unlinkSync(path.join(installPath, 'gitignore'));
   } else {
     throw err;
   }
