@@ -85,29 +85,30 @@ fs.ensureFileSync(packagePath);
 fs.writeFileSync(packagePath, JSON.stringify(newPackageJson, null, 2));
 
 
-// Rename gitignore after the fact to prevent npm from renaming it to .npmignore
-// See: https://github.com/npm/npm/issues/1862
-try {
-  fs.moveSync(
-    path.join(installPath, 'gitignore'),
-    path.join(installPath, '.gitignore'),
-    []
-  );
-} catch (err) {
-  // Append if there's already a `.gitignore` file there
-  if (err.code === 'EEXIST') {
-    const data = fs.readFileSync(path.join(installPath, 'gitignore'));
-    fs.appendFileSync(path.join(installPath, '.gitignore'), data);
-    fs.unlinkSync(path.join(installPath, 'gitignore'));
-  } else {
-    throw err;
-  }
-}
-
 // Async with promises:
 fs.copy(templatePath, installPath)
   .then(() => {
     setTimeout(() => {
+
+
+      // Rename gitignore after the fact to prevent npm from renaming it to .npmignore
+      // See: https://github.com/npm/npm/issues/1862
+      try {
+        fs.moveSync(
+          path.join(installPath, 'gitignore'),
+          path.join(installPath, '.gitignore'),
+          []
+        );
+      } catch (err) {
+        // Append if there's already a `.gitignore` file there
+        if (err.code === 'EEXIST') {
+          const data = fs.readFileSync(path.join(installPath, 'gitignore'));
+          fs.appendFileSync(path.join(installPath, '.gitignore'), data);
+          fs.unlinkSync(path.join(installPath, 'gitignore'));
+        } else {
+          throw err;
+        }
+      }
 
       spinner.info('');
       spinner.succeed([cliDirName + chalk.bold.green(' has installed')])
