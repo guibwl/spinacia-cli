@@ -1,0 +1,38 @@
+{
+  "name": "@spinacia/babel-preset-app",
+  "version": "1.0.0",
+  "description": "@spinacia/babel-preset-app for spinacia-app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guibwl/spinacia-cli.git",
+    "directory": "packages/@spinacia/babel-preset-app"
+  },
+  "keywords": [
+    "@spinacia",
+    "@spinacia/babel-preset-app",
+    "babel-preset"
+  ],
+  "author": "guibwl",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-json-strings": "^7.2.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-syntax-import-meta": "^7.2.0",
+    "@babel/plugin-transform-destructuring": "^7.5.0",
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/runtime": "^7.5.5",
+    "@svgr/webpack": "^4.3.2",
+    "babel-plugin-dynamic-import-node": "^2.3.0",
+    "babel-plugin-istanbul": "^5.2.0",
+    "babel-plugin-import": "^1.12.0",
+    "babel-plugin-named-asset-import": "^0.3.3"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "@spinacia/eslint-config-app",
+  "version": "1.0.6",
+  "description": "eslint-config-app for @spinacia/template-react",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "eslint",
+    "eslint-config",
+    "@spinacia",
+    "@spinacia-app",
+    "@spinacia-cli",
+    "@spinacia/eslint-config-app"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guibwl/spinacia-cli.git",
+    "directory": "packages/@spinacia/eslint-config-app"
+  },
+  "author": "guibwl",
+  "license": "MIT",
+  "dependencies": {
+    "babel-eslint": "^10.0.2",
+    "eslint": "^6.1.0",
+    "eslint-config-react-app": "^5.0.1",
+    "eslint-loader": "^2.1.2",
+    "eslint-plugin-flowtype": "^3.6.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^2.0.1",
+    "react-dev-utils": "^9.0.3"
+  }
+}

@@ -1,0 +1,15 @@
+# Others
+.DS_Store
+Thumbs.db
+.vscode
+
+# Config
+package-lock.json
+records.json
+
+# Logs
+yarn-error.log
+npm-debug.log
+
+# Node_modules
+node_modules/

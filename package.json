@@ -2,22 +2,18 @@
   "name": "spinacia-cli",
   "version": "1.0.39",
   "description": "a react app create cli",
-  "bin": {
-    "spinacia-cli": "./bin/spinacia-cli.js"
+  "devDependencies": {
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.3"
   },
-  "dependencies": {
-    "chalk": "^2.4.1",
-    "commander": "^2.19.0",
-    "fs-extra": "^7.0.0",
-    "ora": "^3.0.0"
-  },
-  "devDependencies": {},
   "scripts": {
-    "start": "rm -rf ./spinacia-react-redux && spinacia-cli",
-    "start:redux": "cd packages/spinacia-script && NODE_ENV=development BABEL_ENV=development node bin/spinacia-script.js start",
-    "build": "cd packages/spinacia-script && node bin/spinacia-script.js build",
-    "build:prod": "cd packages/spinacia-script && node bin/spinacia-script.js build-prod",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "cd packages/spinacia-react-redux && npm start",
+    "build": "cd packages/spinacia-react-redux && npm run build",
+    "test": "cd packages/spinacia-react-redux && npm test",
+    "spinacia-cli": "node tasks/create.js"
   },
   "keywords": [
     "webpack",
@@ -31,10 +27,6 @@
     "redux app",
     "mobx app"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/guibwl/spinacia-cli"
-  },
   "author": "guibwl",
   "contributors": [
     {
@@ -45,5 +37,8 @@
       "name": "anya16"
     }
   ],
-  "license": "ISC"
+  "license": "MIT",
+  "eslintConfig": {
+    "extends": ".eslintrc.js"
+  }
 }

@@ -1,0 +1,35 @@
+{
+  "name": "@spinacia/create",
+  "version": "1.0.0",
+  "description": "a react app creator",
+  "bin": {
+    "spc-create": "bin/create.js"
+  },
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "commander": "^2.19.0",
+    "fs-extra": "^7.0.0",
+    "ora": "^3.0.0"
+  },
+  "scripts": {
+    "start": "rm -rf ./spinacia-react-redux && spinacia-cli",
+    "start:redux": "cd packages/spinacia-script && NODE_ENV=development BABEL_ENV=development node bin/spinacia-script.js start",
+    "build": "cd packages/spinacia-script && node bin/spinacia-script.js build",
+    "build:prod": "cd packages/spinacia-script && node bin/spinacia-script.js build-prod",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "spinacia",
+    "react",
+    "react-app",
+    "@spinacia/create",
+    "@spinacia"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guibwl/spinacia-cli.git",
+    "directory": "packages/@spinacia/create"
+  },
+  "author": "guibwl",
+  "license": "MIT"
+}

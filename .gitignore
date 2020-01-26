@@ -1,12 +1,25 @@
+# Others
 .DS_Store
-node_modules/
-npm-debug.log
-test.js
 Thumbs.db
 .vscode
-Makefile
-yarn.lock
+
+
+# All packages
+/packages/eslint-config-spinacia-app
+/packages/spinacia-react-redux
+/packages/spinacia-script
+/packages/spinacia-test
+/packages/babel-preset-spinacia-app
+/packages/spinacia-utils
+
+
+# Config
 package-lock.json
 records.json
+
+# Logs
 yarn-error.log
-/spinacia-react-redux
+npm-debug.log
+
+# Node_modules
+node_modules/

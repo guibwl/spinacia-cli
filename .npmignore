@@ -1,8 +1,15 @@
-/spinacia-react-redux
-/spinacia-react-pure
-/packages/eslint-config-spinacia-app
-/packages/spinacia-script
 
+
+# All packages
+/packages/eslint-config-spinacia-app
+/packages/spinacia-react-redux
+/packages/spinacia-script
+/packages/spinacia-test
+/packages/babel-preset-spinacia-app
+/packages/spinacia-utils
+
+
+# config
 package-lock.json
 records.json
 yarn-error.log
