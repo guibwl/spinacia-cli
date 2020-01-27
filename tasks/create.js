@@ -58,17 +58,14 @@ const packageTgzPathsByName = {};
 // packagePathsByName 的 key 为 packages 里面的文件夹名称，对应 value 是其对应的 path
 fs.readdirSync(packagesDir).forEach(name => {
   const packageDirPath = path.join(packagesDir, name);
-  const packageJson = path.join(packageDirPath, 'package.json');
-  const {version} = JSON.parse(fs.readFileSync(packageJson, 'utf8'));
+  const packageJsonPath = path.join(packageDirPath, 'package.json');
+  const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
   
-  if (fs.existsSync(packageJson)) {
-    const packageTgz = cp
-      .execSync(`cd ${packageDirPath} && npm pack`, {cwd: rootDir})
-      .toString()
-      .trim();
+  if (fs.existsSync(packageJsonPath)) {
   
-    packageTgzPathsByName[`@spinacia/${name}`] = path.join(packageDirPath, packageTgz);
-    packageVersionByName[`@spinacia/${name}`] = version;
+    packageTgzPathsByName[`@spinacia/${name}`] =
+        path.join(packageDirPath, `${packageJson.name.replace(/@/, '').replace(/\//, '-')}-${packageJson.version}.tgz`);
+    packageVersionByName[`@spinacia/${name}`] = packageJson.version;
     packagePathsByName[`@spinacia/${name}`] = packageDirPath;
   }
 });
@@ -101,6 +98,9 @@ Object.keys(packagePathsByName).forEach((name, i, pkgsName) => {
   console.log(
     'Replaced local dependencies in packages/' + name + '/package.json'
   );
+
+
+  cp.execSync(`cd ${packagePathsByName[name]} && npm pack`, {cwd: rootDir});
 });
 
 console.log('Replaced all local dependencies for testing.');
@@ -129,6 +129,9 @@ cp.execSync(
 Object.keys(packageVersionByName).forEach((name, i, pkgsName) => {
   const packageJson = path.join(packagePathsByName[name], "package.json");
   const json = JSON.parse(fs.readFileSync(packageJson, 'utf8'));
+
+  // delete tgz file
+  fs.unlinkSync(packageTgzPathsByName[name]);
 
   // 用 package.json 内容对比每个 packages 的 name
   pkgsName.forEach(otherName => {
