@@ -53,6 +53,7 @@ const rootDir = path.join(__dirname, '..');
 const packagesDir = path.join(rootDir, 'packages', '@spinacia');
 const packageVersionByName = {};
 const packagePathsByName = {};
+const packageTgzPathsByName = {};
 // 将packages文件夹中有 package.json 的包存储到 packagePathsByName 中
 // packagePathsByName 的 key 为 packages 里面的文件夹名称，对应 value 是其对应的 path
 fs.readdirSync(packagesDir).forEach(name => {
@@ -61,6 +62,12 @@ fs.readdirSync(packagesDir).forEach(name => {
   const {version} = JSON.parse(fs.readFileSync(packageJson, 'utf8'));
   
   if (fs.existsSync(packageJson)) {
+    const packageTgz = cp
+      .execSync(`cd ${packageDirPath} && npm pack`, {cwd: rootDir})
+      .toString()
+      .trim();
+  
+    packageTgzPathsByName[`@spinacia/${name}`] = path.join(packageDirPath, packageTgz);
     packageVersionByName[`@spinacia/${name}`] = version;
     packagePathsByName[`@spinacia/${name}`] = packageDirPath;
   }
@@ -75,18 +82,18 @@ Object.keys(packagePathsByName).forEach((name, i, pkgsName) => {
   // 用 package.json 内容对比每个 packages 的 name
   pkgsName.forEach(otherName => {
     if (json.dependencies && json.dependencies[otherName]) {
-      json.dependencies[otherName] = "file:" + packagePathsByName[otherName];
+      json.dependencies[otherName] = "file:" + packageTgzPathsByName[otherName];
     }
     if (json.devDependencies && json.devDependencies[otherName]) {
-      json.devDependencies[otherName] = "file:" + packagePathsByName[otherName];
+      json.devDependencies[otherName] = "file:" + packageTgzPathsByName[otherName];
     }
     if (json.peerDependencies && json.peerDependencies[otherName]) {
       json.peerDependencies[otherName] =
-        "file:" + packagePathsByName[otherName];
+        "file:" + packageTgzPathsByName[otherName];
     }
     if (json.optionalDependencies && json.optionalDependencies[otherName]) {
       json.optionalDependencies[otherName] =
-        "file:" + packagePathsByName[otherName];
+        "file:" + packageTgzPathsByName[otherName];
     }
   });
 
@@ -99,26 +106,13 @@ Object.keys(packagePathsByName).forEach((name, i, pkgsName) => {
 console.log('Replaced all local dependencies for testing.');
 console.log('Do not edit any package.json while this task is running.');
 
-
-
-// Finally, pack spinacia-script.
-// Don't redirect stdio as we want to capture the output that will be returned
-// from execSync(). In this case it will be the .tgz filename.
-const scriptsFileName = cp
-  .execSync(`npm pack`, { cwd: path.join(packagesDir, 'script') })
-  .toString()
-  .trim();
-
-
-const scriptsPath = path.join(packagesDir, 'script', scriptsFileName);
-
 // Now that we have packed them, call the global CLI.
 const args = process.argv.slice(2);
 
 // Now run the spinacia-cli command
 const spinaciaCliScriptPath = path.join(packagesDir, 'create', 'bin', 'create.js');
 cp.execSync(
-  `node ${spinaciaCliScriptPath} ${args.join(' ')} --scripts-version="${scriptsPath}"`,
+  `node ${spinaciaCliScriptPath} ${args.join(' ')} --scripts-version="${packageTgzPathsByName[`@spinacia/script`]}"`,
   {
     cwd: rootDir,
     stdio: 'inherit',
