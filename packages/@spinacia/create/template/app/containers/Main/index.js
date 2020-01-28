@@ -36,7 +36,6 @@ class Main extends Component {
 
    render() {
      const { isFetching } = this.props;
-     const { webpack } = pkg.devDependencies;
      const { react, redux } = pkg.dependencies;
 
      return ([
@@ -49,7 +48,6 @@ class Main extends Component {
            <span>react with redux</span>
            <Version
              list={[
-               { webpack },
                { react },
                { redux },
                { 'react-router': pkg.dependencies['react-router'] }

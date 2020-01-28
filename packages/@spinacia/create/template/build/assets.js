@@ -6,23 +6,16 @@ module.exports = {
   },
   dev: {
     libs: {
-      css: [
-        'https://test1-city.pingan.com.cn/node/static/common-libs/vconsole@3.3.2/vconsole.min.css',
-      ],
+      css: [],
       js: [
-        'https://test1-city.pingan.com.cn/node/static/common-libs/vconsole@3.3.2/vconsole.min.js',
-        // WX
-        'https://test1-city.pingan.com.cn/node/static/common-libs/@jweixin/jweixin@1.4.0/jweixin-1.4.0.js',
-        // React
-        'https://test1-city.pingan.com.cn/node/static/common-libs/@React-libs/react@16.8.6/react.development.js',
-        'https://test1-city.pingan.com.cn/node/static/common-libs/@React-libs/react-dom@16.8.6/react-dom.development.js',
-        // // Redux
-        'https://test1-city.pingan.com.cn/node/static/common-libs/@React-libs/redux@4.0.1/redux.js',
-        'https://test1-city.pingan.com.cn/node/static/common-libs/@React-libs/react-redux@5.1.1/react-redux.js',
-        'https://test1-city.pingan.com.cn/node/static/common-libs/@React-libs/redux-thunk@2.3.0/redux-thunk.js',
-        // // React-router
-        'https://test1-city.pingan.com.cn/node/static/common-libs/@React-libs/react-router@4.3.1/react-router.js',
-        'https://test1-city.pingan.com.cn/node/static/common-libs/@React-libs/react-router-dom@4.3.1/react-router-dom.js'
+        'https://cdn.bootcss.com/vConsole/3.2.0/vconsole.min.js',
+        'https://unpkg.com/react@16/umd/react.production.min.js',
+        'https://unpkg.com/react-dom@16/umd/react-dom.production.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/redux/3.6.0/redux.min.js',
+        'https://cdn.bootcss.com/react-redux/5.0.7/react-redux.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/redux-thunk/2.1.0/redux-thunk.min.js',
+        'https://cdn.bootcss.com/react-router/3.2.1/ReactRouter.min.js',
+
       ]
     }
   },
@@ -30,18 +23,13 @@ module.exports = {
     libs: {
       css: [],
       js: [
-        // WX
-        'https://s.city.pingan.com.cn/node/static/common-libs/@jweixin/jweixin@1.4.0/jweixin-1.4.0.js',
-        // React
-        'https://s.city.pingan.com.cn/node/static/common-libs/@React-libs/react@16.8.6/react.development.js',
-        'https://s.city.pingan.com.cn/node/static/common-libs/@React-libs/react-dom@16.8.6/react-dom.development.js',
-        // Redux
-        'https://s.city.pingan.com.cn/node/static/common-libs/@React-libs/redux@4.0.1/redux.js',
-        'https://s.city.pingan.com.cn/node/static/common-libs/@React-libs/react-redux@5.1.1/react-redux.js',
-        'https://s.city.pingan.com.cn/node/static/common-libs/@React-libs/redux-thunk@2.3.0/redux-thunk.js',
-        // // React-router
-        'https://s.city.pingan.com.cn/node/static/common-libs/@React-libs/react-router@4.3.1/react-router.js',
-        'https://s.city.pingan.com.cn/node/static/common-libs/@React-libs/react-router-dom@4.3.1/react-router-dom.js'
+        'https://cdn.bootcss.com/vConsole/3.2.0/vconsole.min.js',
+        'https://unpkg.com/react@16/umd/react.production.min.js',
+        'https://unpkg.com/react-dom@16/umd/react-dom.production.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/redux/3.6.0/redux.min.js',
+        'https://cdn.bootcss.com/react-redux/5.0.7/react-redux.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/redux-thunk/2.1.0/redux-thunk.min.js',
+        'https://cdn.bootcss.com/react-router/3.2.1/ReactRouter.min.js',
       ]
     }
   }
