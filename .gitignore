@@ -23,3 +23,5 @@ npm-debug.log
 
 # Node_modules
 node_modules/
+
+my-app/

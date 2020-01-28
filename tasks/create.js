@@ -106,6 +106,11 @@ Object.keys(packagePathsByName).forEach((name, i, pkgsName) => {
 console.log('Replaced all local dependencies for testing.');
 console.log('Do not edit any package.json while this task is running.');
 
+cp.execSync('npm cache clean -f', {
+  cwd: rootDir,
+  stdio: 'inherit',
+})
+
 // Now that we have packed them, call the global CLI.
 const args = process.argv.slice(2);
 

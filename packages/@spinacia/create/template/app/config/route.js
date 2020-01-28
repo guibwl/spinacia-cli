@@ -4,7 +4,7 @@ const Main = loadable(() => import('../containers/Main/index'));
 
 const routes = [
   {
-    path: '/home',
+    path: '/',
     component: Main,
     name: 'Main'
   }

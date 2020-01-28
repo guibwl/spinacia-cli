@@ -6,6 +6,7 @@ import './style.less';
 import SPINACIA from './SPINACIA.svg';
 import pkg from '../../../package.json';
 import Version from './components/Version';
+import Ts from './ts.tsx';
 
 class Main extends Component {
   constructor(props, context) {
@@ -52,6 +53,7 @@ class Main extends Component {
                { redux },
                { 'react-router': pkg.dependencies['react-router'] }
              ]} />
+             <Ts />
          </div>
      ]);
    }

@@ -64,7 +64,8 @@ newPackageJson.dependencies = {
   "react-router": "^4.3.1",
   "react-router-dom": "^4.3.1",
   "redux": "^4.0.0",
-  "redux-thunk": "^2.3.0"
+  "redux-thunk": "^2.3.0",
+  "typescript": "^3.7.5"
 };
 
 if (program.scriptsVersion.match(/^.+\.(tgz|tar\.gz)$/)) {
@@ -77,7 +78,6 @@ if (program.scriptsVersion.match(/^.+\.(tgz|tar\.gz)$/)) {
   console.log("--scripts-version error!");
   process.exit(1);
 }
-console.log('newPackageJson >>>', newPackageJson);
 
 
 const packagePath = path.join(installPath, "package.json");

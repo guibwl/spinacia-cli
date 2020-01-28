@@ -22,7 +22,8 @@ module.exports = function () {
           'debug': false
         }
       ],
-      [require.resolve('@babel/preset-react')]
+      [require.resolve('@babel/preset-react')],
+      [require.resolve("@babel/preset-typescript")]
     ],
     'plugins': [
       // Stage 3
