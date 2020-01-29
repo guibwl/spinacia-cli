@@ -3,16 +3,6 @@
 Thumbs.db
 .vscode
 
-
-# All packages
-/packages/eslint-config-spinacia-app
-/packages/spinacia-react-redux
-/packages/spinacia-script
-/packages/spinacia-test
-/packages/babel-preset-spinacia-app
-/packages/spinacia-utils
-
-
 # Config
 package-lock.json
 records.json
@@ -23,5 +13,3 @@ npm-debug.log
 
 # Node_modules
 node_modules/
-
-my-app/

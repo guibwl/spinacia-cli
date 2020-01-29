@@ -8,7 +8,6 @@ const appPackageJson = require(paths.appPackageJson);
 
 // appConfig by user
 const appConfig = require('../appConfig');
-const PORT = appConfig.port;
 
 // the node env
 const webpackEnv = process.env.NODE_ENV;
@@ -21,14 +20,7 @@ module.exports = {
   // Stop compilation early in production
   bail: isEnvProduction,
   devtool: isEnvDevelopment ? 'cheap-module-source-map' : isEnvProduction && 'source-map',
-  entry: [ paths.appIndexJs ].concat(
-    isEnvDevelopment
-    ? [
-      `webpack-dev-server/client?http://localhost:${PORT}`,
-      'webpack/hot/only-dev-server'
-    ]
-    : []
-  ),
+  entry: [ paths.appIndexJs ],
   output: {
     path: isEnvProduction ? appConfig.outputDir : undefined,
     // There are also additional JS chunk files if you use code splitting.
