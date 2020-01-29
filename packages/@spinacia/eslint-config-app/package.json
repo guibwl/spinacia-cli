@@ -1,6 +1,6 @@
 {
   "name": "@spinacia/eslint-config-app",
-  "version": "1.0.6",
+  "version": "1.0.0",
   "description": "eslint-config-app for @spinacia/template-react",
   "main": "index.js",
   "scripts": {

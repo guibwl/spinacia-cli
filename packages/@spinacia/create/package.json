@@ -1,6 +1,6 @@
 {
   "name": "@spinacia/create",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "a react app creator",
   "bin": {
     "spc-create": "bin/create.js"

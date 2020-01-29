@@ -52,7 +52,7 @@ newPackageJson.eslintConfig = {
 newPackageJson.dependencies = {
   "@babel/polyfill": "^7.4.4",
   "@loadable/component": "^5.10.2",
-  "@spinacia/script": "1.0.0",
+  "@spinacia/script": "1.0.3",
   "antd-mobile": "^2.2.2",
   "history": "^4.7.2",
   "ost-ui": "^0.0.7",
@@ -68,16 +68,20 @@ newPackageJson.dependencies = {
   "typescript": "^3.7.5"
 };
 
-if (program.scriptsVersion.match(/^.+\.(tgz|tar\.gz)$/)) {
-  newPackageJson.dependencies["@spinacia/script"] = `file:${program.scriptsVersion}`;
-} else if (program.scriptsVersion.match(/^file:/)) {
-  newPackageJson.dependencies["@spinacia/script"] = program.scriptsVersion;
-} else if (program.scriptsVersion.match(/^\d+\.\d+\.\d/)) {
-  newPackageJson.dependencies["@spinacia/script"] = program.scriptsVersion;
-} else if (program.scriptsVersion) {
-  console.log("--scripts-version error!");
-  process.exit(1);
+
+if (program.scriptsVersion) {
+  if (program.scriptsVersion.match(/^.+\.(tgz|tar\.gz)$/)) {
+    newPackageJson.dependencies["@spinacia/script"] = `file:${program.scriptsVersion}`;
+  } else if (program.scriptsVersion.match(/^file:/)) {
+    newPackageJson.dependencies["@spinacia/script"] = program.scriptsVersion;
+  } else if (program.scriptsVersion.match(/^\d+\.\d+\.\d/)) {
+    newPackageJson.dependencies["@spinacia/script"] = program.scriptsVersion;
+  } else {
+    console.log("--scripts-version error!");
+    process.exit(1);
+  }
 }
+
 
 
 const packagePath = path.join(installPath, "package.json");
