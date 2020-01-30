@@ -1,31 +1,21 @@
 {
-  "name": "spinacia-cli",
-  "version": "1.0.39",
-  "description": "a react app create cli",
+  "description": "a react app creator",
   "devDependencies": {
     "eslint": "^6.1.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.14.3"
+    "eslint-plugin-react": "^7.14.3",
+    "lerna": "^3.20.2",
+    "lerna-changelog": "^0.8.3"
   },
   "scripts": {
-    "start": "cd packages/spinacia-react-redux && npm start",
-    "build": "cd packages/spinacia-react-redux && npm run build",
-    "test": "cd packages/spinacia-react-redux && npm test",
     "spinacia-cli": "node tasks/create.js"
   },
-  "keywords": [
-    "webpack",
-    "demo",
-    "spinacia",
-    "cli",
-    "spinacia-cli",
-    "react",
-    "app",
-    "react-app",
-    "redux app",
-    "mobx app"
+  "workspaces": [
+    "packages/@spinacia/*",
+    "packages/test/*",
+    "packages/spinacia-version-marker"
   ],
   "author": "guibwl",
   "contributors": [
