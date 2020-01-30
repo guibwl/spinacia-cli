@@ -10,6 +10,7 @@
     "lerna-changelog": "^0.8.3"
   },
   "scripts": {
+    "release": "lerna publish --force-publish",
     "spinacia-cli": "node tasks/create.js"
   },
   "workspaces": [
