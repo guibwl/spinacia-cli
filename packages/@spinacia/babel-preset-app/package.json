@@ -1,6 +1,6 @@
 {
   "name": "@spinacia/babel-preset-app",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "@spinacia/babel-preset-app for spinacia-app",
   "main": "index.js",
   "scripts": {

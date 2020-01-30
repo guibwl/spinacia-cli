@@ -1,13 +1,17 @@
 {
-  "version": "1.0.4",
+  "version": "1.0.5",
   "npmClient": "npm",
   "command": {
     "publish": {
-      "ignoreChanges": ["*.md"]
+      "ignoreChanges": [
+        "*.md"
+      ]
     },
     "bootstrap": {
       "ignore": "component-*",
-      "npmClientArgs": ["--no-package-lock"]
+      "npmClientArgs": [
+        "--no-package-lock"
+      ]
     }
   },
   "packages": [
