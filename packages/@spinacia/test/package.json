@@ -46,5 +46,6 @@
     "mocha": "^6.2.0",
     "progress-bar-webpack-plugin": "^1.12.1",
     "sinon": "^7.4.1"
-  }
+  },
+  "gitHead": "f024701c68cc2cd30b9f01a9a87d106e44e50e48"
 }

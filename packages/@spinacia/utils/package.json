@@ -52,5 +52,6 @@
     "webpack-assets-manifest": "^3.1.1",
     "webpack-merge": "^4.2.1",
     "webpackbar": "^4.0.0"
-  }
+  },
+  "gitHead": "f024701c68cc2cd30b9f01a9a87d106e44e50e48"
 }

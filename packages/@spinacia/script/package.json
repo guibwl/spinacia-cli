@@ -32,5 +32,6 @@
     "test": "cross-env NODE_ENV=test BABEL_ENV=test eslint app --fix",
     "build": "cross-env NODE_ENV=production BABEL_ENV=production BUILD_ENV=dev webpack --mode production --config webpack.config.js",
     "build:prod": "cross-env NODE_ENV=production BABEL_ENV=production BUILD_ENV=prod webpack --mode production --config webpack.config.js"
-  }
+  },
+  "gitHead": "f024701c68cc2cd30b9f01a9a87d106e44e50e48"
 }

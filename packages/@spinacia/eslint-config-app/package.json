@@ -34,5 +34,6 @@
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^2.0.1",
     "react-dev-utils": "^9.0.3"
-  }
+  },
+  "gitHead": "f024701c68cc2cd30b9f01a9a87d106e44e50e48"
 }

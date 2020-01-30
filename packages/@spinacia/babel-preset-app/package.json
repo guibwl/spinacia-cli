@@ -35,5 +35,6 @@
     "babel-plugin-import": "^1.12.0",
     "babel-plugin-istanbul": "^5.2.0",
     "babel-plugin-named-asset-import": "^0.3.3"
-  }
+  },
+  "gitHead": "f024701c68cc2cd30b9f01a9a87d106e44e50e48"
 }

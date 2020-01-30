@@ -33,5 +33,6 @@
     "directory": "packages/@spinacia/create"
   },
   "author": "guibwl",
-  "license": "MIT"
+  "license": "MIT",
+  "gitHead": "f024701c68cc2cd30b9f01a9a87d106e44e50e48"
 }
