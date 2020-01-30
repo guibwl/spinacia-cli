@@ -1,6 +1,6 @@
 {
   "name": "@spinacia/script",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "spinacia script",
   "bin": {
     "spc-script": "bin/spinacia-script.js"
@@ -20,8 +20,8 @@
   "author": "guibwl",
   "license": "MIT",
   "dependencies": {
-    "@spinacia/test": "^1.0.5",
-    "@spinacia/utils": "^1.0.5",
+    "@spinacia/test": "^1.0.6",
+    "@spinacia/utils": "^1.0.6",
     "chalk": "^2.4.2",
     "cross-spawn": "^6.0.5",
     "webpack": "^4.32.2",
