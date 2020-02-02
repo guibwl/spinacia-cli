@@ -51,15 +51,15 @@ newPackageJson.eslintConfig = {
 };
 
 newPackageJson.dependencies = {
-  "@babel/polyfill": "^7.4.4",
-  "@loadable/component": "^5.10.2",
-  "@spinacia/script": "1.0.3",
-  "antd-mobile": "^2.2.2",
-  "history": "^4.7.2",
+  "@babel/polyfill": "^7.8.3",
+  "@loadable/component": "^5.12.0",
+  "@spinacia/script": `^${packageJson.version}`,
+  "antd-mobile": "^2.3.1",
+  "history": "^4.10.1",
   "ost-ui": "^0.0.7",
-  "prop-types": "^15.6.2",
-  "react": "^16.4.1",
-  "react-dom": "^16.4.1",
+  "prop-types": "^15.7.2",
+  "react": "^16.12.0",
+  "react-dom": "^16.12.0",
   "react-redux": "^5.0.7",
   "react-route": "^1.0.3",
   "react-router": "^4.3.1",
