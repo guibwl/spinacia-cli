@@ -6,6 +6,7 @@
 
 'use strict';
 
+const os = require('os');
 const fs = require('fs');
 const path = require('path');
 const cp = require('child_process');
@@ -65,7 +66,7 @@ fs.readdirSync(packagesDir).forEach(name => {
   
     packageTgzPathsByName[`@spinacia/${name}`] =
         path.join(packageDirPath, `${packageJson.name.replace(/@/, '').replace(/\//, '-')}-${packageJson.version}.tgz`);
-    packageVersionByName[`@spinacia/${name}`] = packageJson.version;
+    packageVersionByName[`@spinacia/${name}`] = `^${packageJson.version}`;
     packagePathsByName[`@spinacia/${name}`] = packageDirPath;
   }
 });
@@ -154,7 +155,7 @@ Object.keys(packageVersionByName).forEach((name, i, pkgsName) => {
     }
   });
 
-  fs.writeFileSync(packageJson, JSON.stringify(json, null, 2), 'utf8');
+  fs.writeFileSync(packageJson, JSON.stringify(json, null, 2) + os.EOL, 'utf8');
   console.log(
     'Replaced local dependencies in packages/' + name + '/package.json'
   );

@@ -3,7 +3,7 @@
   "version": "1.0.9",
   "description": "spinacia script",
   "bin": {
-    "spc-script": "bin/spinacia-script.js"
+    "spinacia-script": "bin/spinacia-script.js"
   },
   "keywords": [
     "@spinacia/script",

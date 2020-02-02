@@ -11,7 +11,7 @@
   },
   "scripts": {
     "release": "lerna publish --force-publish --no-git-tag-version --no-git-reset --no-push --yes",
-    "spinacia-cli": "node tasks/create.js"
+    "create": "node tasks/create.js"
   },
   "workspaces": [
     "packages/@spinacia/*",

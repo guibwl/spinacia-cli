@@ -1,7 +1,7 @@
 {
   "name": "@spinacia/test",
   "bin": {
-    "spc-test": "bin/start.js"
+    "spinacia-test": "bin/start.js"
   },
   "version": "1.0.9",
   "description": "Testing for spinacia",

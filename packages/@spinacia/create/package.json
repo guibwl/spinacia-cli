@@ -3,7 +3,7 @@
   "version": "1.0.9",
   "description": "a react app creator",
   "bin": {
-    "spc-create": "bin/create.js"
+    "spinacia-create": "bin/create.js"
   },
   "dependencies": {
     "chalk": "^2.4.1",

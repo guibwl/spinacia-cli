@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+var os = require('os');
 var fs = require("fs-extra");
 var path = require('path');
 var chalk = require('chalk')
@@ -17,7 +18,7 @@ var cliDirName;
 program
   .version(packageJson.version)
   .action(function(name) {
-    cliDirName = typeof name === "string" ? name : "spinacia-react-app";
+    cliDirName = typeof name === "string" ? name : "my-app";
   })
   .option(
     "--scripts-version <alternative-package>",
@@ -40,9 +41,9 @@ const newPackageJson = {};
 newPackageJson.name = cliDirName;
 
 newPackageJson.scripts = {
-  "start": "spc-script start",
-  "build": "spc-script build",
-  "test": "spc-script test"
+  "start": "spinacia-script start",
+  "build": "spinacia-script build",
+  "test": "spinacia-script test"
 };
 
 newPackageJson.eslintConfig = {
@@ -88,7 +89,7 @@ const packagePath = path.join(installPath, "package.json");
 
 fs.ensureFileSync(packagePath);
 
-fs.writeFileSync(packagePath, JSON.stringify(newPackageJson, null, 2));
+fs.writeFileSync(packagePath, JSON.stringify(newPackageJson, null, 2) + os.EOL);
 
 
 // Async with promises:
