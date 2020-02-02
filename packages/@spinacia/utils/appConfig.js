@@ -8,6 +8,7 @@ const config = require(envConfigFile);
 const {
     port,
     eslint,
+    eslintFix,
     documentTitle,
     publicPath,
     outputDir
@@ -18,6 +19,7 @@ const {
 module.exports = {
   'port': port || 3000,
   'eslintEnable': eslint,
+  'eslintFix': eslintFix,
   'documentTitle': documentTitle,
   'publicPath': publicPath,
   'appMedia': splicePublicPathFn(publicPath, '/static/media/'),

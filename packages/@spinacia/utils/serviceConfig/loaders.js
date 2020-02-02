@@ -12,7 +12,7 @@ const isEnvTest = webpackEnv === 'test';
 const paths = require('../paths');
 
 const appConfig = isEnvTest ? {} : require('../appConfig');
-const eslintEnable = appConfig.eslintEnable;
+const {eslintEnable, eslintFix} = appConfig;
 
 
 function checkPathExists() {
@@ -186,7 +186,7 @@ const loaders = {
             'ignore': false,
             'useEslintrc': false,
             // @remove-on-eject-end
-            'fix': true
+            'fix': eslintFix
           },
           'loader': require.resolve('eslint-loader'),
         },

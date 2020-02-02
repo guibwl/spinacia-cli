@@ -23,6 +23,8 @@ function detectPort(port, host) {
     .then(async () => {
         const _port = await findFreePort(port, host);
 
+        if (_port === port) return port;
+
         return await inquirer
         .prompt([{
             type: 'confirm',

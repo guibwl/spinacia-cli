@@ -4,6 +4,8 @@ module.exports = {
   port: 3000,
   // eslint enable
   eslint: true,
+  // eslint enable auto fix
+  eslintFix: true,
   // same as document.title
   documentTitle: '',
   // ignore on local service
