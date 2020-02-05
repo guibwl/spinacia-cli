@@ -54,7 +54,7 @@ module.exports = {
   } : {},
   recordsPath: isEnvProduction ? paths.records : undefined,
   resolve: {
-    'extensions': ['.js', '.jsx'],
+    'extensions': ['.js', '.jsx', '.tsx', '.ts', '.d.ts'],
     'plugins': [
       // Adds support for installing with Plug'n'Play, leading to faster installs and adding
       // guards against forgotten dependencies and such.

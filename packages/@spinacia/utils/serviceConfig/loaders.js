@@ -55,7 +55,7 @@ const postcssOption = {
 
 
 const oneOf = [{
-  'test': /\.(js|mjs|jsx|ts|tsx)?$/,
+  'test': /\.(js|mjs|jsx|ts|tsx)?$/i,
   'loader': 'babel-loader',
   'include': checkPathExists(paths.appSrc, paths.appBuild, `${process.cwd()}/src`),
   'options': {
@@ -83,7 +83,7 @@ const oneOf = [{
   }
 },
 {
-  test: /\.(js|mjs)$/,
+  test: /\.(js|mjs)$/i,
   exclude: /@babel(?:\/|\\{1,2})runtime/,
   loader: require.resolve('babel-loader'),
   options: {
@@ -119,7 +119,7 @@ const oneOf = [{
   },
 },
 {
-    'test': /\.css$/,
+    'test': /\.css$/i,
     'use': [
       (isEnvDevelopment || isEnvTest) && require.resolve('style-loader'),
       isEnvProduction && {
@@ -131,7 +131,7 @@ const oneOf = [{
     ].filter(Boolean)
 },
 {
-  'test': /\.less$/,
+  'test': /\.less$/i,
   'use': [
     (isEnvDevelopment || isEnvTest) && require.resolve('style-loader'),
     isEnvProduction && {
@@ -144,7 +144,7 @@ const oneOf = [{
   ].filter(Boolean)
 },
 {
-  'test': /\.(ttf|eot|svg|woff|woff2)(\?.+)?$/,
+  'test': /\.(tif|ttf|eot|svg|woff|woff2)(\?.+)?$/i,
   'loader': 'file-loader',
   'options': isEnvProduction ? {
     'name': '[name].[contenthash:8].[ext]',
@@ -153,7 +153,7 @@ const oneOf = [{
   } : {}
 },
 {
-  'test': /\.(jpe?g|png|gif)(\?.+)?$/,
+  'test': /\.(jpe?g|png|gif)(\?.+)?$/i,
   'loader': 'url-loader',
   'options': isEnvProduction ? {
     'limit': 10000,
@@ -172,7 +172,7 @@ const loaders = {
     typeof eslintEnable === 'boolean' &&
     !isEnvTest ?
     {
-      'test': /\.(js|mjs|jsx|ts|tsx)$/,
+      'test': /\.(js|mjs|jsx|ts|tsx)$/i,
       'enforce': 'pre',
       'use': [
         {
@@ -196,7 +196,7 @@ const loaders = {
     {},
     {oneOf} ,
     {
-      'test': /\.md$/,
+      'test': /\.md$/i,
       'loader': 'raw-loader'
     }
   ]
