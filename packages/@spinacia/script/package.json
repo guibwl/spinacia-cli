@@ -1,6 +1,6 @@
 {
   "name": "@spinacia/script",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "spinacia script",
   "bin": {
     "spinacia-script": "bin/spinacia-script.js"
@@ -20,8 +20,8 @@
   "author": "guibwl",
   "license": "MIT",
   "dependencies": {
-    "@spinacia/test": "^1.0.13",
-    "@spinacia/utils": "^1.0.13",
+    "@spinacia/test": "^1.0.14",
+    "@spinacia/utils": "^1.0.14",
     "chalk": "^2.4.2",
     "cross-spawn": "^6.0.5",
     "webpack": "^4.32.2",
@@ -33,5 +33,5 @@
     "build": "cross-env NODE_ENV=production BABEL_ENV=production BUILD_ENV=dev webpack --mode production --config webpack.config.js",
     "build:prod": "cross-env NODE_ENV=production BABEL_ENV=production BUILD_ENV=prod webpack --mode production --config webpack.config.js"
   },
-  "gitHead": "2716067cbace2ea663d403257931c1d863b6194d"
+  "gitHead": "1625fc80f6412ce5303834d4085bdfd8e993ab6c"
 }
