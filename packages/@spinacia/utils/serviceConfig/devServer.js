@@ -1,9 +1,12 @@
+const {appAssets} = require('../paths')
+
 module.exports = {
     'publicPath': '/',
     'hot': true,
     'historyApiFallback': true,
     'open': true,
     'openPage': '',
+    'contentBase': appAssets,
     'stats': {
       'all': false,
       'colors': true,

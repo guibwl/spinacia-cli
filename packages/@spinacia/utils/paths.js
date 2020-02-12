@@ -25,6 +25,7 @@ module.exports = {
   appIndexJs: resolveApp('build/index.js'),
   appHtml: resolveApp('build/index.html'),
   appSrc: resolveApp('app'),
+  appAssets: resolveApp('app/assets'),
   appBuild: resolveApp('build'),
   records: resolveApp('records.json'),
   favicon: resolveApp('favicon.ico'),

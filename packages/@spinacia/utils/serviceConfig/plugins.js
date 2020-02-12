@@ -8,6 +8,7 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const paths = require('../paths');
 
 const {
@@ -96,7 +97,19 @@ const plugins = [
   new webpack.DefinePlugin({
     'node_argvs': JSON.stringify(nodeArgvs)
   }),
-  isEnvProduction && new webpack.HashedModuleIdsPlugin()
+  isEnvProduction && new webpack.HashedModuleIdsPlugin(),
+  isEnvProduction && new CopyPlugin([
+    {
+      'from': paths.appAssets,
+      'to': paths.appOutputDir,
+      'ignore': [
+        '**/index.html',
+        '**/build-assets.json',
+        '**/favicon.ico',
+        '**/static/**'
+      ]
+    }
+  ])
 ].filter(Boolean);
 
 module.exports = {plugins};

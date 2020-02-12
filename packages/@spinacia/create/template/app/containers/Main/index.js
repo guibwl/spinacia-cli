@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { OstLoading } from 'ost-ui';
 import { Connect } from './connect';
 import './style.less';
-import SPINACIA from './SPINACIA.svg';
 import pkg from '../../../package.json';
 import Version from './components/Version';
 import Ts from './ts.tsx';
@@ -44,7 +43,7 @@ class Main extends Component {
        isFetching
          ? null
          : <div className="Main" key='1'>
-           <img src={SPINACIA} alt="" />
+           <img src='SPINACIA.svg' alt="" />
            <h2>SPINACIA-REACT</h2>
            <span>react with redux</span>
            <Version
