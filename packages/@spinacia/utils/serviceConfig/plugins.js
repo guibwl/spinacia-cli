@@ -69,15 +69,20 @@ const plugins = [
         'html': fs.readFileSync(loadingHtml),
         'css': `<style>${fs.readFileSync(loadingCss)}</style>`
       },
-      'preset':
-          `<script>` +
-          `var scriptStr = /test|localhost|^\\d+\\.\\d+\\.\\d+\\.\\d+$/i.test(window.location.hostname)?` +
-          [assetsDevLibs.css, assetsDevLibs.js].filter(Boolean).join('\n+') +
-          `:` +
-          [assetsProdLibs.css, assetsProdLibs.js].filter(Boolean).join('\n+') +
-          `;` +
-          `scriptStr && document.writeln(scriptStr)` +
-          `</script>`
+      'preset': (() => {
+
+        const makeupInScript = str => `<script>(function(){${str}})()</script>`;
+
+        const condition = `/test|localhost|^\\d+\\.\\d+\\.\\d+\\.\\d+$/i.test(window.location.hostname)`;
+
+        const devAssets = [assetsDevLibs.css, assetsDevLibs.js].filter(Boolean).join('\n+') || `null`;
+
+        const prodAssets = [assetsProdLibs.css, assetsProdLibs.js].filter(Boolean).join('\n+') || `null`;
+        
+        return makeupInScript(
+          `var assets;if(${condition}){assets=${devAssets};}else{assets=${prodAssets};};assets&&document.writeln(assets);`
+        );
+      })()
     }
   ),
   isEnvProduction && new CleanWebpackPlugin(),

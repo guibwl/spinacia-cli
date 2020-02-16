@@ -1,6 +1,6 @@
 {
   "name": "@spinacia/eslint-config-app",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "eslint-config-app for @spinacia/template-react",
   "main": "index.js",
   "scripts": {
@@ -34,5 +34,5 @@
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^2.0.1"
   },
-  "gitHead": "1625fc80f6412ce5303834d4085bdfd8e993ab6c"
+  "gitHead": "fd1b184787c3f80de8c86b3968b7b0138736aa0e"
 }

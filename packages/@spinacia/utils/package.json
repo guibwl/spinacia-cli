@@ -1,6 +1,6 @@
 {
   "name": "@spinacia/utils",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "utils for spinacia app",
   "main": "index.js",
   "scripts": {
@@ -19,8 +19,8 @@
   "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.5.5",
-    "@spinacia/babel-preset-app": "^1.0.14",
-    "@spinacia/eslint-config-app": "^1.0.14",
+    "@spinacia/babel-preset-app": "^1.0.15",
+    "@spinacia/eslint-config-app": "^1.0.15",
     "babel-loader": "^8.0.6",
     "case-sensitive-paths-webpack-plugin": "^2.2.0",
     "clean-webpack-plugin": "^3.0.0",
@@ -54,5 +54,5 @@
     "webpack-merge": "^4.2.1",
     "webpackbar": "^4.0.0"
   },
-  "gitHead": "1625fc80f6412ce5303834d4085bdfd8e993ab6c"
+  "gitHead": "fd1b184787c3f80de8c86b3968b7b0138736aa0e"
 }
