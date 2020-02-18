@@ -1,36 +1,3 @@
-请安装 ssh 密钥，使用该脚手架，若未使用，可能会出现问题；
-### ssh 安装方法：
-
-> MAC:
-
-1.   cd ~/.ssh/    【如果没有对应的文件夹，则执行  mkdir  ./.ssh】
-
-2.  git config --global user.name "xxxx" 【um账号】
-
-3.  git config --global user.email "xxx@pingan.com.cn" 【邮箱】
-
-4.  ssh-keygen -t rsa -C "xxx@pingan.com.cn" 【邮箱】
-
-5. 记事本打开文件 ~/.ssh/id_rsa.pub 并复制里面的内容
-
-6. 打开code平台并用um账号秘密登录：右上角点击头像 -> 我的主页 -> 个人密钥 -> 添加密钥 -> 将复制的内容粘贴到 ‘密钥’ 一栏，名称一栏填写um账号即可；-> 点击确定完成
-
-
-> Windows:
-
-1. 打开 gitbash
-
-2. git config --global user.name "xxxx" 【um账号】
-
-3. git config --global user.email "xxx@pingan.com.cn" 【邮箱】
-
-4. ssh-keygen -t rsa -C "your email address" 【不断回车】
-
-5. 记事本打开文件 ~/.ssh/id_rsa.pub 并复制里面的内容
-
-6. 打开code平台并用um账号秘密登录：右上角点击头像 -> 我的主页 -> 个人密钥 -> 添加密钥 -> 将复制的内容粘贴到 ‘密钥’ 一栏，名称一栏填写um账号即可；-> 点击确定完成
-
-
 # Spinacia-react-redux
 
 基于旧版本的React脚手架的升级版本，升级后的脚手架无论本地服务启动速度，打包后的文件大小、浏览器加载速度等都得到一定提升，同时你还可以使用 react 16 和 webpack 4 的新特性来进行开发；
