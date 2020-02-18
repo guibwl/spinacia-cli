@@ -1,6 +1,6 @@
 {
   "name": "@spinacia/babel-preset-app",
-  "version": "1.0.15",
+  "version": "1.0.17",
   "description": "@spinacia/babel-preset-app for spinacia-app",
   "main": "index.js",
   "scripts": {
@@ -36,5 +36,5 @@
     "babel-plugin-istanbul": "^5.2.0",
     "babel-plugin-named-asset-import": "^0.3.3"
   },
-  "gitHead": "fd1b184787c3f80de8c86b3968b7b0138736aa0e"
+  "gitHead": "5b967e09d9a8c613a364bfbd1cf372b894f1ccde"
 }

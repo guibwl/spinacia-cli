@@ -3,7 +3,7 @@
   "bin": {
     "spinacia-test": "bin/start.js"
   },
-  "version": "1.0.15",
+  "version": "1.0.17",
   "description": "Testing for spinacia",
   "main": "index.js",
   "scripts": {
@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/guibwl/spinacia-cli#readme",
   "dependencies": {
-    "@spinacia/utils": "^1.0.15",
+    "@spinacia/utils": "^1.0.17",
     "chai": "^4.2.0",
     "chalk": "^2.4.2",
     "enzyme": "^3.10.0",
@@ -47,5 +47,5 @@
     "progress-bar-webpack-plugin": "^1.12.1",
     "sinon": "^7.4.1"
   },
-  "gitHead": "fd1b184787c3f80de8c86b3968b7b0138736aa0e"
+  "gitHead": "5b967e09d9a8c613a364bfbd1cf372b894f1ccde"
 }

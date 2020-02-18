@@ -1,6 +1,6 @@
 {
   "name": "@spinacia/eslint-config-app",
-  "version": "1.0.15",
+  "version": "1.0.17",
   "description": "eslint-config-app for @spinacia/template-react",
   "main": "index.js",
   "scripts": {
@@ -21,18 +21,22 @@
   },
   "author": "guibwl",
   "license": "MIT",
-  "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.18.0",
-    "@typescript-eslint/parser": "^2.18.0",
-    "babel-eslint": "^10.0.2",
-    "eslint": "^6.1.0",
-    "eslint-config-react-app": "^5.0.1",
-    "eslint-loader": "^2.1.2",
-    "eslint-plugin-flowtype": "^3.6.1",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.14.3",
-    "eslint-plugin-react-hooks": "^2.0.1"
+  "files": [
+    "index.js",
+    ".eslintrc.js"
+  ],
+  "peerDependencies": {
+    "@typescript-eslint/eslint-plugin": "2.x",
+    "@typescript-eslint/parser": "2.x",
+    "babel-eslint": "10.x",
+    "eslint": "6.x",
+    "eslint-config-react-app": "5.x",
+    "eslint-loader": "2.x",
+    "eslint-plugin-flowtype": "3.x",
+    "eslint-plugin-import": "2.x",
+    "eslint-plugin-jsx-a11y": "6.x",
+    "eslint-plugin-react": "7.x",
+    "eslint-plugin-react-hooks": "2.x"
   },
-  "gitHead": "fd1b184787c3f80de8c86b3968b7b0138736aa0e"
+  "gitHead": "5b967e09d9a8c613a364bfbd1cf372b894f1ccde"
 }
