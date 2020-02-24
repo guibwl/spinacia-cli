@@ -1,16 +1,17 @@
-
 module.exports = {
-  // only working on local service
+  // Default port for webpack dev server.
   port: 3000,
-  // eslint enable
+  // Eslint loader switch.
   eslint: true,
-  // eslint enable auto fix
+  // When this eslintFix is 'true',
+  // eslint loader will automatically fix some code.
   eslintFix: true,
-  // same as document.title
+  // Same as document.title,
+  // but this will write <title>your setting</title> in the 'index.html'.
   documentTitle: '',
-  // ignore on local service
-  // after build all assets files publicPath, it will be relative path when this is empty
+  // Set publicPath for all assets,
+  // you need this when you gonna use CDN.
   publicPath: '',
-  // build output directory name
+  // build output directory.
   outputDir: 'dist'
 };

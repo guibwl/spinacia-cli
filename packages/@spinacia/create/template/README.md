@@ -1,155 +1,163 @@
-# Spinacia-react-redux
+# React app create by @spinacia
 
-基于旧版本的React脚手架的升级版本，升级后的脚手架无论本地服务启动速度，打包后的文件大小、浏览器加载速度等都得到一定提升，同时你还可以使用 react 16 和 webpack 4 的新特性来进行开发；
-
-**目录结构及开发方式尽量与旧版保持一致，多数文件直接进行copy即可**；
-
-``react 16.x``  ``webpack 4.x``  ``react router 4.x``  ``redux 4.x``
-
-
-
-## Install
+## Creating an App
 
 ``` bash
-npx spinacia-cli
+npx @spinacia/create
 ```
-or
+@spinacia will creating an app inside a folder named 'my-app' and propety 'name' in the `package.json` will also called same, or you can customize those:
 
 ``` bash
-npx spinacia-cli <folder name>
+npx @spinacia/create [customize-folder-name]
 ```
 
 *[npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) comes with npm 5.2+ and higher, run ```npm i -g npm``` to update
 
 
-在  ```spinacia-react-redux``` 或 ```<folder name>``` 文件夹中会自动初始化项目结构 (**主要看下src目录即可进行开发**)：
+Inside that directory, it will generate the initial project structure:
 
 ```bash
-spinacia-react-redux            #npx 命令生成的文件夹
-├── .babelrc                    #babel 配置文件
-├── .editorconfig               #editorconfig 配置文件
-├── .eslintignore               #eslint 检测忽略项
-├── .eslintrc.js                #eslint 检测规则
-├── .gitignore                  #git 忽略项
-├── favicon.ico                 #ico
-├── package.json                #package.json
-├── postcss.config.js           #postcss 的配置文件
+.
+├── README.ZH.md
 ├── README.md
-├── build                       #入口文件及webpack配置文件
-│   ├── loading                 #首次内容渲染 loading
-│   │   ├── loading.css
-│   │   └── loading.html
-│   ├── index.html              #入口html文件
-│   ├── index.js                #入口js文件
-│   ├── server.js               #开发环境 webpack 配置文件
-│   └── webpack.config.js       #生产环境 webpack 配置文件
-└── src                         #业务代码
-    ├── components              #公用组件
-    ├── config                  #配置项
-    │   ├── router-core         #router4.x 核心配置文件(开发时不用修改该文件夹)
-    │   ├── env.js              #环境配置
-    │   ├── reducer.js          #root reducer
-    │   └── route.js            #router4.x 路由配置
-    ├── containers              #页面容器
-    │   ├── App                 #首页面
-    │   │   ├── action.js
-    │   │   ├── constant.js
-    │   │   ├── index.js
-    │   │   ├── reducer.js
-    │   │   └── style.less      #私有样式
-    │   └── Main                #案例页面
-    │         ├── action
-    │         ├── components    #公用组件
-    │         ├── connect
-    │         ├── constants
-    │         ├── reducers
-    │         ├── index.js
-    │         ├── SPINACIA.svg
-    │         └── style.less    #私有样式
-    ├── css                     #公有样式
-    │   ├── common.less
-    │   └── resets.less
-    ├── utils                   #封装工具
-    │   └── request.js          #请求
-    └── index.jsx               #app入口文件
+├── app
+│   ├── assets
+│   │   └── SPINACIA.svg
+│   ├── components
+│   │   └── ...
+│   ├── config
+│   │   ├── reducer.js
+│   │   ├── route.js
+│   │   └── router-core
+│   │       └── ...
+│   ├── containers
+│   │   ├── App
+│   │   │   ├── action.js
+│   │   │   ├── constant.js
+│   │   │   ├── index.js
+│   │   │   ├── reducer.js
+│   │   │   └── style.less
+│   │   └── Main
+│   │       ├── actions
+│   │       │   └── index.js
+│   │       ├── components
+│   │       │   └── ...
+│   │       ├── connect
+│   │       │   └── index.js
+│   │       ├── constants
+│   │       │   └── index.js
+│   │       ├── index.js
+│   │       ├── reducers
+│   │       │   └── index.js
+│   │       ├── style.less
+│   │       └── ts.tsx
+│   ├── css
+│   │   ├── common.less
+│   │   └── resets.less
+│   └── index.jsx
+├── build
+│   ├── assets.js
+│   ├── config.js
+│   ├── index.html
+│   ├── index.js
+│   └── loading
+│       ├── loading.css
+│       └── loading.html
+├── favicon.ico
+└── package.json
+
+20 directories, 40 files
 ```
-
-现在打开你的项目目录:
-
-``` cd spinacia-react-redux ```
-
-or
-
-``` cd <folder name>```
 
 ## Start develop
 
 ``` npm start ```
+@spinacia will open browser automatic, and if port was occupied, @spinacia will instead other free port.
 
-打开链接:  http://localhost:3000/
 
-## Start production
+## Build production
 
 ``` npm run build ```
+Builds the app for production to the `dist` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-项目将被打包到 ``dist`` 文件夹中；
-所有打包文件名将带有 hashes ，无需担心首次发布后会有缓存问题；
-脚手架采用 ``optimization.splitChunks`` 分离打包，优化加载性能！
+The build is minified and the filenames include the hashes.<br>
 
-## Features
-
-#### 首次内容渲染 loading
-
-如果说 SPA 首次加载过程分为以下3步：
-
-* 空白的页面；
-* 然后 html 和引用的 css 加载完毕，浏览器进行首次渲染，我们把首次渲染需要加载的资源体积称为 “首屏体积”；
-* 然后 react、react-dom、业务js代码加载完毕，应用第一次渲染，或者说首次内容渲染；
+Your app is ready to be deployed.
 
 
-旧版本中我们需要在第3步完成后渲染页面，在此之前页面都是空白的；我们其实可以在第2步加载完成时，做些什么；通过 webpack ```html-webpack-plugin``` 插件配置加载 loading。可以在第2步首屏体积(通常1-4kb)加载完成时渲染 loading ，在第3步js(通常100-1000kb)加载完成后将loding销毁进行首次内容渲染。以此达到减少白屏时间提升用户体验的目的。
+## Build config
 
-[更多性能优化方案](https://juejin.im/entry/5b03afd351882542ac7d9291)
+The app support some custom settings.
 
-#### 分离打包，充分利用浏览器缓存
+In `build/config.js`:
 
-通过使用 ```optimization.splitChunks``` 将框架代码抽离为 ```vendors.[hash].js```, ```node_modules``` 依赖抽离为 ```dependencies.[hash].js```。因此若你这些代码没有修改，则build 后 hash（文件名）不变，浏览器加载时因文件名未变会直接从缓存读取文件，而不会从互联网重新下载，我们以此达到提高加载性能的目的；
+```js
+module.exports = {
+  // Default port for webpack dev server.
+  port: 3000,
+  // Eslint loader switch.
+  eslint: true,
+  // When this eslintFix is 'true',
+  // eslint loader will automatically fix some code.
+  eslintFix: true,
+  // Same as document.title,
+  // but this will write <title>your setting</title> in the 'index.html'.
+  documentTitle: '',
+  // Set publicPath for all assets,
+  // you need this when you gonna use CDN.
+  publicPath: '',
+  // build output directory.
+  outputDir: 'dist'
+};
 
-#### 样式前缀自动补全
-
-通常我们编写某些样式，为了兼容各类老版浏览器，我们必须这么写：
-
-```css
-::-webkit-input-placeholder {
-  color: gray;
-}
-:-ms-input-placeholder {
-  color: gray;
-}
-::-ms-input-placeholder {
-  color: gray;
-}
-::placeholder {
-  color: gray;
-}
 ```
 
-而在升级版脚手架你只需写默认样式，[Autoprefixed](https://github.com/postcss/autoprefixer) 插件会帮助你完成其余代码，
+In `build/assets.js`:
 
-所以在升级版脚手架中这样编写，你无需考虑其他前缀：
+```js
 
-```css
-::placeholder {
-  color: gray;
+module.exports = {
+  loading: {
+    html: './loading/loading.html',
+    css: './loading/loading.css'
+  },
+  dev: {
+    libs: {
+      css: [],
+      js: [
+        'https://cdn.bootcss.com/vConsole/3.2.0/vconsole.min.js',
+        'https://unpkg.com/react@16/umd/react.production.min.js',
+        'https://unpkg.com/react-dom@16/umd/react-dom.production.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/redux/3.6.0/redux.min.js',
+        'https://cdn.bootcss.com/react-redux/5.0.7/react-redux.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/redux-thunk/2.1.0/redux-thunk.min.js',
+        'https://cdn.bootcss.com/react-router/3.2.1/ReactRouter.min.js',
+      ]
+    }
+  },
+  prod: {
+    libs: {
+      css: [],
+      js: [
+        'https://cdn.bootcss.com/vConsole/3.2.0/vconsole.min.js',
+        'https://unpkg.com/react@16/umd/react.production.min.js',
+        'https://unpkg.com/react-dom@16/umd/react-dom.production.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/redux/3.6.0/redux.min.js',
+        'https://cdn.bootcss.com/react-redux/5.0.7/react-redux.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/redux-thunk/2.1.0/redux-thunk.min.js',
+        'https://cdn.bootcss.com/react-router/3.2.1/ReactRouter.min.js',
+      ]
+    }
+  }
 }
+
 ```
 
 
-#### Eslnt in vscode
 
-该脚手架使用了Eslnt来规范代码，若使用 vscode 来开发项目, 在安装了```eslint``` 插件后可以在编辑器设置中设置 ``` eslint.autoFixOnSave  ``` 为 ``true``, 这样在你保存代码时候，浏览器会帮你修复一些 ```eslint``` 检测出的错误；
-
-###### 更多特性待补充。。。
-
-
-
+1 build config
+2 pre loading...
+3 test
+4 ts
+5 eslint
