@@ -38,6 +38,7 @@ module.exports = {
   'loadingCss': path.join(paths.appBuild, assetsConfigFile.loading.css),
   'assetsDevLibs': assetsLibsToStr(assetsConfigFile.dev.libs),
   'assetsProdLibs': assetsLibsToStr(assetsConfigFile.prod.libs),
+  'devPattern': assetsConfigFile.devPattern
 }
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@spinacia/create",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "description": "a react app creator",
   "bin": {
     "spinacia-create": "bin/create.js"
@@ -34,5 +34,5 @@
   },
   "author": "guibwl",
   "license": "MIT",
-  "gitHead": "5b967e09d9a8c613a364bfbd1cf372b894f1ccde"
+  "gitHead": "01d27fcfcf03e7d97de6ee87addc7cbbfaf776b5"
 }

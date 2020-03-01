@@ -4,6 +4,7 @@ module.exports = {
     html: './loading/loading.html',
     css: './loading/loading.css'
   },
+  devPattern: '',
   dev: {
     libs: {
       css: [],

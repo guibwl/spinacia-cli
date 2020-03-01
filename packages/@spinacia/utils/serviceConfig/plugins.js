@@ -20,7 +20,8 @@ const {
   loadingHtml,
   loadingCss,
   assetsDevLibs,
-  assetsProdLibs
+  assetsProdLibs,
+  devPattern
 } = require('../appAssets');
 
 const {
@@ -73,7 +74,9 @@ const plugins = [
 
         const makeupInScript = str => `<script>(function(){${str}})()</script>`;
 
-        const condition = `/test|localhost|^\\d+\\.\\d+\\.\\d+\\.\\d+$/i.test(window.location.hostname)`;
+        const customizeEnv = devPattern ? devPattern.replace(/\./g, '\\.') + '|' : '';
+        
+        const condition = `/${customizeEnv}test|localhost|^\\d+\\.\\d+\\.\\d+\\.\\d+$/i.test(window.location.hostname)`;
 
         const devAssets = [assetsDevLibs.css, assetsDevLibs.js].filter(Boolean).join('\n+') || `null`;
 

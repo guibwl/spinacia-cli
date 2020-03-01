@@ -124,8 +124,10 @@ module.exports = {
     css: './loading/loading.css'
   },
   // When `window.location.hostname` includes `test`,
-  // app will use dev: {...} configuration,
+  // or you can customize which is matched `window.location.hostname` in the `devPattern`,
+  // and app will use dev: {...} configuration,
   // otherwise will use pord: {...} configuration.
+  devPattern: 'www.nmhs.test',
   dev: {
     libs: {
       // App will generator script and link tag in html header,
