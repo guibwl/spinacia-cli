@@ -98,7 +98,7 @@ const plugins = [
       }
     }
   }),
-  //申明浏览器环境常量
+
   new webpack.DefinePlugin({
     'node_argvs': JSON.stringify(nodeArgvs)
   }),

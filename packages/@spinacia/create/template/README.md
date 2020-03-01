@@ -116,14 +116,20 @@ module.exports = {
 In `build/assets.js`:
 
 ```js
-
+// Show 'loading' icon before 'bundle.js' loaded.
+// You can customize loading in loading.html and loading.css.
 module.exports = {
   loading: {
     html: './loading/loading.html',
     css: './loading/loading.css'
   },
+  // When `window.location.hostname` includes `test`,
+  // app will use dev: {...} configuration,
+  // otherwise will use pord: {...} configuration.
   dev: {
     libs: {
+      // App will generator script and link tag in html header,
+      // for load following links.
       css: [],
       js: [
         'https://cdn.bootcss.com/vConsole/3.2.0/vconsole.min.js',
@@ -138,15 +144,11 @@ module.exports = {
   },
   prod: {
     libs: {
-      css: [],
+      css: [
+        ...
+      ],
       js: [
-        'https://cdn.bootcss.com/vConsole/3.2.0/vconsole.min.js',
-        'https://unpkg.com/react@16/umd/react.production.min.js',
-        'https://unpkg.com/react-dom@16/umd/react-dom.production.min.js',
-        'https://cdnjs.cloudflare.com/ajax/libs/redux/3.6.0/redux.min.js',
-        'https://cdn.bootcss.com/react-redux/5.0.7/react-redux.min.js',
-        'https://cdnjs.cloudflare.com/ajax/libs/redux-thunk/2.1.0/redux-thunk.min.js',
-        'https://cdn.bootcss.com/react-router/3.2.1/ReactRouter.min.js',
+        ...
       ]
     }
   }
@@ -155,9 +157,25 @@ module.exports = {
 ```
 
 
+## Test
 
-1 build config
-2 pre loading...
-3 test
-4 ts
-5 eslint
+We use `enzyme` `chai` `istanbul` `mocha` `karma` `sinon`.
+and run `*.js` files which should in the directory named `__test__`.
+
+start:
+
+``` npm test ```
+
+The coverage report will automatically generate at root path.
+
+
+## Eslint
+
+We use eslint to help specification code, and use `@spinacia/eslint-config-app` configuration.
+if you don't need eslint, you can trun off in the `build/config.js`.
+
+
+## Typescript
+
+Typescript has supported, you can create `tsconfig.json` customize configuration by yourself.
+
