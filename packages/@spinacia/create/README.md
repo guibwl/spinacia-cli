@@ -181,3 +181,7 @@ if you don't need eslint, you can trun off in the `build/config.js`.
 
 Typescript has supported, you can create `tsconfig.json` customize configuration by yourself.
 
+## `app/assets` directory
+
+This directory is the static pool on the development, when you execute `npm start` and put something staitc files like `*.png`, then you can access it by `http://localhost:port/*.png`.
+And after build, the static files in `app/assets` will be move to the `./dist`.

@@ -28,6 +28,7 @@ program
 
 
 var templatePath = path.join(_cwd, "template");
+var readmePath = path.join(_cwd, "README.md");
 var installPath = path.join(processPath, cliDirName);
 
 // loading pluging start...
@@ -97,6 +98,10 @@ fs.copy(templatePath, installPath)
   .then(() => {
     setTimeout(() => {
 
+      fs.copySync(
+          readmePath, 
+          path.join(installPath, 'README.md')
+        );
 
       // Rename gitignore after the fact to prevent npm from renaming it to .npmignore
       // See: https://github.com/npm/npm/issues/1862

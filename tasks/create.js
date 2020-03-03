@@ -11,14 +11,6 @@ const fs = require('fs');
 const path = require('path');
 const cp = require('child_process');
 
-const cleanup = () => {
-  console.log('Cleaning up.');
-  // Reset changes made to package.json files.
-  // cp.execSync(`git checkout -- packages/*/package.json`);
-  // Uncomment when snapshot testing is enabled by default:
-  // rm ./template/src/__snapshots__/App.test.js.snap
-};
-
 const handleExit = () => {
   cleanup();
   console.log('Exiting without error.');
@@ -38,17 +30,6 @@ process.on('uncaughtException', handleError);
 
 // Temporarily overwrite package.json of all packages in monorepo
 // to point to each other using absolute file:/ URLs.
-
-// const gitStatus = cp.execSync(`git status --porcelain`).toString();
-
-// if (gitStatus.trim() !== '') {
-//   console.log('Please commit your changes before running this script!');
-//   console.log('Exiting because `git status` is not empty:');
-//   console.log();
-//   console.log(gitStatus);
-//   console.log();
-//   process.exit(1);
-// }
 
 const rootDir = path.join(__dirname, '..');
 const packagesDir = path.join(rootDir, 'packages', '@spinacia');
@@ -125,38 +106,40 @@ cp.execSync(
   }
 );
 
-// // Cleanup
-// handleExit();
-
-
-
 // 恢复
-// 获取每个 packages 里面的 package.json 内容
-Object.keys(packageVersionByName).forEach((name, i, pkgsName) => {
-  const packageJson = path.join(packagePathsByName[name], "package.json");
-  const json = JSON.parse(fs.readFileSync(packageJson, 'utf8'));
+function cleanup() {
+  
+    // 获取每个 packages 里面的 package.json 内容
+    Object.keys(packageVersionByName).forEach((name, i, pkgsName) => {
+      const packageJson = path.join(packagePathsByName[name], "package.json");
+      const json = JSON.parse(fs.readFileSync(packageJson, 'utf8'));
 
-  // delete tgz file
-  fs.unlinkSync(packageTgzPathsByName[name]);
+      // delete tgz file
+      fs.unlinkSync(packageTgzPathsByName[name]);
 
-  // 用 package.json 内容对比每个 packages 的 name
-  pkgsName.forEach(otherName => {
-    if (json.dependencies && json.dependencies[otherName]) {
-      json.dependencies[otherName] = packageVersionByName[otherName];
-    }
-    if (json.devDependencies && json.devDependencies[otherName]) {
-      json.devDependencies[otherName] = packageVersionByName[otherName];
-    }
-    if (json.peerDependencies && json.peerDependencies[otherName]) {
-      json.peerDependencies[otherName] = packageVersionByName[otherName];
-    }
-    if (json.optionalDependencies && json.optionalDependencies[otherName]) {
-      json.optionalDependencies[otherName] = packageVersionByName[otherName];
-    }
-  });
+      // 用 package.json 内容对比每个 packages 的 name
+      pkgsName.forEach(otherName => {
+        if (json.dependencies && json.dependencies[otherName]) {
+          json.dependencies[otherName] = packageVersionByName[otherName];
+        }
+        if (json.devDependencies && json.devDependencies[otherName]) {
+          json.devDependencies[otherName] = packageVersionByName[otherName];
+        }
+        if (json.peerDependencies && json.peerDependencies[otherName]) {
+          json.peerDependencies[otherName] = packageVersionByName[otherName];
+        }
+        if (json.optionalDependencies && json.optionalDependencies[otherName]) {
+          json.optionalDependencies[otherName] = packageVersionByName[otherName];
+        }
+      });
 
-  fs.writeFileSync(packageJson, JSON.stringify(json, null, 2) + os.EOL, 'utf8');
-  console.log(
-    'Replaced local dependencies in packages/' + name + '/package.json'
-  );
-});
+      fs.writeFileSync(packageJson, JSON.stringify(json, null, 2) + os.EOL, 'utf8');
+      console.log(
+        'Replaced local dependencies in packages/' + name + '/package.json'
+      );
+    });
+}
+
+
+// Cleanup
+handleExit();
